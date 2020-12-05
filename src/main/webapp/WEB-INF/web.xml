@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>LibraryServlet</servlet-name>
+        <servlet-class>by.pavka.library.controller.LibraryServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LibraryServlet</servlet-name>
+        <url-pattern>/library</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>by.pavka.library.LibraryStarter</listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+    <filter>
+        <filter-name>CharacterSetFilter</filter-name>
+        <filter-class>by.pavka.library.controller.filter.CharacterSetFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterSetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>LibraryConstraints</web-resource-name>
+            <url-pattern>/jsp/block/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+</web-app>

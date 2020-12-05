@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+    <tlib-version>1.0</tlib-version>
+    <short-name>LibraryTags</short-name>
+    <uri>http://library.pavka.by</uri>
+    <tag>
+        <description>The tag provides readable info about a user</description>
+        <name>user-info</name>
+        <tag-class>by.pavka.library.tag.UserTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>user</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>The tag provides readable info about a book</description>
+        <name>book-info</name>
+        <tag-class>by.pavka.library.tag.BookTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>book</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>detailed</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <description>The tag provides readable info about an editionInfo</description>
+        <name>edition-info</name>
+        <tag-class>by.pavka.library.tag.EditionTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>edition</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>availability</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>The tag provides readable info about a bookOrder</description>
+        <name>order-info</name>
+        <tag-class>by.pavka.library.tag.OrderTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>order</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>edition</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>standard</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+</taglib>
