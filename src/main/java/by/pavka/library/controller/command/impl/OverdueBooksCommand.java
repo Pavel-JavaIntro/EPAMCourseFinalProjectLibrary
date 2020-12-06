@@ -5,7 +5,9 @@ import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,7 @@ public class OverdueBooksCommand implements ActionCommand {
     PageRouter pageRouter = new PageRouter(PageRouter.OVERDUE_BOOKS);
     HttpSession session = request.getSession();
     session.removeAttribute(OVERDUE);
-    LibraryService service = LibraryService.getInstance();
+    ProcessBookService service = LibServiceFactory.getProcessBookService();
     LocalDate date = LocalDate.now();
     List<Book> onHandsBooks = null;
     List<Book> overdueBooks = new ArrayList<>();

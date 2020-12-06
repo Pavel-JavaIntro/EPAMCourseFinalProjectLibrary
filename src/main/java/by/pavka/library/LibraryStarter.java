@@ -17,7 +17,6 @@ public class LibraryStarter implements ServletContextListener {
 
   public void contextInitialized(ServletContextEvent servletContextEvent) {
     LOGGER.info("STARTED");
-//    DBConnectionPool.getInstance();
     DBConnectorPool.getInstance();
     ConstantManager.getLocationById(0);
     OrderHolder.getInstance();

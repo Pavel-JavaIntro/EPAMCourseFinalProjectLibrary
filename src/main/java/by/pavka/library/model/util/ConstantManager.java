@@ -1,8 +1,10 @@
 package by.pavka.library.model.util;
 
 import by.pavka.library.model.LibraryFatalException;
-import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.InitService;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.ReaderServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,10 +41,8 @@ public class ConstantManager {
 
   static {
     try {
-      //WelcomeService service = WelcomeService.getInstance();
-      LibraryService service = LibraryService.getInstance();
+      InitService service = LibServiceFactory.getInitService();
       service.initConstants(locations, TableEntityMapper.LOCATION);
-      //service.initConstants(operations, TableEntityMapper.OPERATION);
       service.initConstants(roles, TableEntityMapper.ROLE);
       LOCATION_DECOMMISSIONED = getLocationIdByDescription(DECOMMISSIONED);
       LOCATION_ON_HAND = getLocationIdByDescription(ON_HAND);

@@ -5,7 +5,9 @@ import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.impl.Edition;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ReaderService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,7 @@ public class FindEditionCommand implements ActionCommand {
     String title = request.getParameter(TITLE);
     String author = request.getParameter(AUTHOR);
     PageRouter pageRouter = new PageRouter(PageRouter.SEARCH);
-    LibraryService service = LibraryService.getInstance();
+    ReaderService service = LibServiceFactory.getReaderService();
     HttpSession session = request.getSession();
     List<Edition> editions;
     try {

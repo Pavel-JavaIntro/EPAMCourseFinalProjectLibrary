@@ -33,7 +33,6 @@ public class LibraryService implements WelcomeServiceInterface {
   public <T extends SimpleListEntity> void initConstants(
       Map<Integer, String> constants, TableEntityMapper constant) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      //LibraryDao<T> dao = new LibraryDaoImpl<>(constant, connector);
       LibraryDao<T> dao = LibraryDaoFactory.getLibraryDao(constant, connector);
       List<T> list = dao.read();
       for (T entity : list) {
@@ -437,7 +436,6 @@ public class LibraryService implements WelcomeServiceInterface {
             bookDao.update(bookId, userField);
             bookDao.update(bookId, reserveField);
             bookDao.update(bookId, locationField);
-            System.out.println("DIRECTLY: " + bookDao.get(bookId).fieldForName(Book.LOCATION_ID).getValue());
           } else {
             int editionId = editionInfo.getEdition().getId();
             Book nBook = findFreeBookByEdition(editionId);

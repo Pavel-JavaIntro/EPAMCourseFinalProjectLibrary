@@ -5,7 +5,9 @@ import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.email.ConfirmationMailSender;
 import by.pavka.library.entity.impl.User;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessUserService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 import by.pavka.library.model.util.ConstantManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +41,7 @@ public class AddUserCommand implements ActionCommand {
       int password = ConfirmationMailSender.sendInvitation(email).hashCode();
       user.setValue(User.PASSWORD, password);
     }
-    LibraryService service = LibraryService.getInstance();
+    ProcessUserService service = LibServiceFactory.getProcessUserService();
     try {
       service.addUser(user);
       session.setAttribute(RESULT, PageRouter.RESULT_SUCCESS);

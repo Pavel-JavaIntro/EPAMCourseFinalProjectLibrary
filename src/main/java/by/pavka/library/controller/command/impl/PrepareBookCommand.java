@@ -6,7 +6,9 @@ import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.entity.order.OrderHolder;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Queue;
@@ -21,7 +23,7 @@ public class PrepareBookCommand implements ActionCommand {
     OrderHolder orderHolder = OrderHolder.getInstance();
     Queue<BookOrder> placedOrders = orderHolder.getPlacedOrders();
     int bookId = Integer.parseInt(request.getParameter(BOOK));
-    LibraryService service = LibraryService.getInstance();
+    ProcessBookService service = LibServiceFactory.getProcessBookService();
     for (BookOrder bookOrder : placedOrders) {
       for (EditionInfo editionInfo : bookOrder.getEditionInfoSet()) {
         if (editionInfo.getBook() != null && editionInfo.getBook().getId() == bookId) {

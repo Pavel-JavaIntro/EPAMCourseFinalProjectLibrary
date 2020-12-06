@@ -7,7 +7,9 @@ import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.entity.order.OrderHolder;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ReaderService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,7 +37,7 @@ public class OrderBookCommand implements ActionCommand {
       return pageRouter;
     } else {
       BookOrder bookOrder = new BookOrder(client);
-      LibraryService service = LibraryService.getInstance();
+      ReaderService service = LibServiceFactory.getReaderService();
       try {
         service.orderBook(bookOrder);
         OrderHolder.getInstance().addOrder(bookOrder);

@@ -1,8 +1,10 @@
 package by.pavka.library.entity.order;
 
 import by.pavka.library.model.LibraryFatalException;
+import by.pavka.library.model.service.InitService;
 import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +19,7 @@ public class OrderHolder {
   private Queue<BookOrder> preparedOrders;
 
   private OrderHolder() {
-    LibraryService service = LibraryService.getInstance();
+    InitService service = LibServiceFactory.getInitService();
     placedOrders = new ConcurrentLinkedQueue<>();
     preparedOrders = new ConcurrentLinkedQueue<>();
     try {

@@ -8,7 +8,9 @@ import by.pavka.library.entity.impl.Author;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.entity.impl.Edition;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,7 +49,7 @@ public class AddEditionCommand implements ActionCommand {
     }
     Edition edition = new Edition();
     Book book = new Book();
-    LibraryService service = LibraryService.getInstance();
+    ProcessBookService service = LibServiceFactory.getProcessBookService();
     edition.setValue(Edition.STANDARD_NUMBER, code);
     edition.setValue(Edition.GENRE_ID, genre);
     edition.setValue(Edition.TITLE, title);

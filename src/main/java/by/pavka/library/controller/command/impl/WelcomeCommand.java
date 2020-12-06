@@ -3,7 +3,8 @@ package by.pavka.library.controller.command.impl;
 import by.pavka.library.controller.command.ActionCommand;
 import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.client.AppClient;
-import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.InitService;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.util.ConstantManager;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 public class WelcomeCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    LibraryService service = LibraryService.getInstance();
+    InitService service = LibServiceFactory.getInitService();
     HttpSession session = request.getSession();
     PageRouter pageRouter = new PageRouter();
     try {

@@ -16,7 +16,6 @@ public class SelectBookCommand implements ActionCommand {
     HttpSession session = request.getSession();
     String idS = request.getParameter(EDITION);
     String desk = request.getParameter(DESK);
-    System.out.println("DESK = " + desk);
     int id = Integer.parseInt(idS);
     AppClient client = (AppClient) session.getAttribute(SESSION_ATTRIBUTE_CLIENT);
     Set<EditionInfo> editionInfos = (Set<EditionInfo>) session.getAttribute(EDITIONS);

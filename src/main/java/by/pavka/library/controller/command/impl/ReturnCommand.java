@@ -4,7 +4,9 @@ import by.pavka.library.controller.command.ActionCommand;
 import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +18,7 @@ public class ReturnCommand implements ActionCommand {
     HttpSession session = request.getSession();
     session.removeAttribute(RESULT);
     int bookId = Integer.parseInt(request.getParameter(RETURN));
-    LibraryService service = LibraryService.getInstance();
+    ProcessBookService service = LibServiceFactory.getProcessBookService();
     Book book = null;
     try {
       book = service.findBookById(bookId);

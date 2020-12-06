@@ -6,7 +6,9 @@ import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.entity.order.OrderHolder;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Queue;
@@ -15,7 +17,7 @@ public class DispatchCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
     PageRouter pageRouter = new PageRouter(PageRouter.SHOW_BOOKS);
-    LibraryService service = LibraryService.getInstance();
+    ProcessBookService service = LibServiceFactory.getProcessBookService();
     OrderHolder orderHolder = OrderHolder.getInstance();
     Queue<BookOrder> preparedOrders = orderHolder.getPreparedOrders();
     int bookId = 0;

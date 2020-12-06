@@ -4,7 +4,9 @@ import by.pavka.library.controller.command.ActionCommand;
 import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.impl.User;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessUserService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,7 @@ public class FindUsersCommand implements ActionCommand {
     if (surname != null && name != null) {
       session.removeAttribute(USERS);
       session.removeAttribute(RESULT);
-      LibraryService service = LibraryService.getInstance();
+      ProcessUserService service = LibServiceFactory.getProcessUserService();
       try {
         List<User> users = service.findUsers(surname, name);
         session.setAttribute(USER_SURNAME, surname);

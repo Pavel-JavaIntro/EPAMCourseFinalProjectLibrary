@@ -5,7 +5,9 @@ import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.model.service.LibraryService;
+import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
+import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +40,7 @@ public class AddBookCommand implements ActionCommand {
     }
     if (code != null) {
       Book newBook = new Book();
-      LibraryService service = LibraryService.getInstance();
+      ProcessBookService service = LibServiceFactory.getProcessBookService();
       try {
         if (editionId == 0) {
           editionId = service.editionIdByCode(code);
