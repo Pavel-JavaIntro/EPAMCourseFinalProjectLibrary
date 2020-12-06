@@ -21,7 +21,7 @@ public class AddEditionCommand implements ActionCommand {
 
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_BOOKS);
     HttpSession session = request.getSession();
     String code = (String) session.getAttribute(CODE);
     if (code == null) {

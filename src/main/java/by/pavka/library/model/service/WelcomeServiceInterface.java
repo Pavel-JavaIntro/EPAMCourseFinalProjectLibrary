@@ -36,8 +36,6 @@ public interface WelcomeServiceInterface {
 
   void bindBookAndLocation(EditionInfo info) throws ServiceException;
 
-  void addCode(String code) throws ServiceException;
-
   int editionIdByCode(String code) throws ServiceException;
 
   void addBook(Book book) throws ServiceException;
@@ -48,7 +46,7 @@ public interface WelcomeServiceInterface {
 
   void bindEditionAndAuthors(int editionId, int[] authorsId) throws ServiceException;
 
-  List<Author> findAuthors(Criteria criterion) throws ServiceException;
+  List<Author> findAuthors(Author author) throws ServiceException;
 
   void decommissionBook(int bookId) throws ServiceException;
 

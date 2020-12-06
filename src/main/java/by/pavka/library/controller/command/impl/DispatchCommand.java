@@ -14,7 +14,7 @@ import java.util.Queue;
 public class DispatchCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.SHOW_BOOKS);
     LibraryService service = LibraryService.getInstance();
     OrderHolder orderHolder = OrderHolder.getInstance();
     Queue<BookOrder> preparedOrders = orderHolder.getPreparedOrders();

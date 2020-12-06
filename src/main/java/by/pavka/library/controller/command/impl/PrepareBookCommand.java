@@ -16,7 +16,7 @@ public class PrepareBookCommand implements ActionCommand {
 
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.SHOW_ORDERS);
     String action = request.getParameter(PREPARATION);
     OrderHolder orderHolder = OrderHolder.getInstance();
     Queue<BookOrder> placedOrders = orderHolder.getPlacedOrders();

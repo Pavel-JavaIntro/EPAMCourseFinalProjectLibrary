@@ -13,7 +13,7 @@ import java.util.List;
 public class FindUsersCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_USERS);
     HttpSession session = request.getSession();
     String surname = request.getParameter(USER_SURNAME);
     String name = request.getParameter(USER_NAME);

@@ -13,7 +13,7 @@ public class FixReturnCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
     HttpSession session = request.getSession();
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.RETURN_BOOKS);
     Book book = (Book) session.getAttribute(RETURNING);
     LibraryService service = LibraryService.getInstance();
     if (book != null) {

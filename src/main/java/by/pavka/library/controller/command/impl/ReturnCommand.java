@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public class ReturnCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.RETURN_BOOKS);
     HttpSession session = request.getSession();
     session.removeAttribute(RESULT);
     int bookId = Integer.parseInt(request.getParameter(RETURN));

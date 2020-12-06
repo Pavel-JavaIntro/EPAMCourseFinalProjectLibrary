@@ -18,7 +18,7 @@ public class FindEditionCommand implements ActionCommand {
   public PageRouter execute(HttpServletRequest request) {
     String title = request.getParameter(TITLE);
     String author = request.getParameter(AUTHOR);
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.SEARCH);
     LibraryService service = LibraryService.getInstance();
     HttpSession session = request.getSession();
     List<Edition> editions;

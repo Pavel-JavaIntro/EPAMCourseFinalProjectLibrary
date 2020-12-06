@@ -11,10 +11,7 @@ import by.pavka.library.entity.impl.User;
 import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.model.DBConnectorPool;
-import by.pavka.library.model.dao.DBConnector;
-import by.pavka.library.model.dao.DaoException;
-import by.pavka.library.model.dao.LibraryDao;
-import by.pavka.library.model.dao.ManyToManyDao;
+import by.pavka.library.model.dao.*;
 import by.pavka.library.model.dao.impl.LibraryDaoImpl;
 import by.pavka.library.model.dao.impl.ManyToManyDaoImpl;
 import by.pavka.library.model.util.ConstantManager;
@@ -36,7 +33,8 @@ public class LibraryService implements WelcomeServiceInterface {
   public <T extends SimpleListEntity> void initConstants(
       Map<Integer, String> constants, TableEntityMapper constant) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<T> dao = new LibraryDaoImpl<>(constant, connector);
+      //LibraryDao<T> dao = new LibraryDaoImpl<>(constant, connector);
+      LibraryDao<T> dao = LibraryDaoFactory.getLibraryDao(constant, connector);
       List<T> list = dao.read();
       for (T entity : list) {
         constants.put(entity.getId(), entity.getDescription());
@@ -48,7 +46,7 @@ public class LibraryService implements WelcomeServiceInterface {
 
   public int countBooks() throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       return bookDao.read().size();
     } catch (DaoException e) {
       throw new ServiceException("Cannot count the books", e);
@@ -57,7 +55,7 @@ public class LibraryService implements WelcomeServiceInterface {
 
   public int countUsers() throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<User> userDao = new LibraryDaoImpl<>(TableEntityMapper.USER, connector);
+      LibraryDao<User> userDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.USER, connector);
       return userDao.read().size();
     } catch (DaoException e) {
       throw new ServiceException("Cannot count the users", e);
@@ -68,7 +66,7 @@ public class LibraryService implements WelcomeServiceInterface {
   public User auth(String surname, String name, String password) throws ServiceException {
     int hashPass = password.hashCode();
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<User> userDao = new LibraryDaoImpl<>(TableEntityMapper.USER, connector);
+      LibraryDao<User> userDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.USER, connector);
       Criteria criteria = new Criteria();
       EntityField<String> surnameField = new EntityField<>(User.SURNAME);
       surnameField.setValue(surname);
@@ -92,7 +90,7 @@ public class LibraryService implements WelcomeServiceInterface {
   public List<Book> findBooksByEditionCode(String code) throws ServiceException {
     List<Book> books;
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Edition> editionDao = new LibraryDaoImpl<>(TableEntityMapper.EDITION, connector);
+      LibraryDao<Edition> editionDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.EDITION, connector);
       EntityField<String> field = new EntityField<>(Edition.STANDARD_NUMBER);
       field.setValue(code);
       Criteria criteria = new Criteria();
@@ -113,7 +111,7 @@ public class LibraryService implements WelcomeServiceInterface {
   public List<Book> findBooksByEdition(int id) throws ServiceException {
     List<Book> result = new ArrayList<>();
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> dao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> dao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       Criteria criteria = new Criteria();
       EntityField<Integer> edId = new EntityField<>(Book.EDITION_ID);
       edId.setValue(id);
@@ -128,7 +126,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public List<Edition> findEditions(String title, String author) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      ManyToManyDao<Edition, Author> dao = new ManyToManyDaoImpl(connector);
+      ManyToManyDao<Edition, Author> dao = LibraryDaoFactory.getManyToManyDao(connector);
       if (title.isEmpty() && author.isEmpty()) {
         return dao.read();
       }
@@ -148,7 +146,7 @@ public class LibraryService implements WelcomeServiceInterface {
 
       List<Author> authorList = null;
       if (!author.isEmpty()) {
-        try (LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector)) {
+        try (LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector)) {
           Criteria criteriaA = new Criteria();
           EntityField<String> authorField = new EntityField<>(Author.SURNAME);
           authorField.setValue(author);
@@ -221,8 +219,8 @@ public class LibraryService implements WelcomeServiceInterface {
   }
 
   public void bindAuthors(EditionInfo info, DBConnector connector) throws DaoException, LibraryEntityException {
-    ManyToManyDao<Edition, Author> editionDao = new ManyToManyDaoImpl(connector);
-    LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector);
+    ManyToManyDao<Edition, Author> editionDao = LibraryDaoFactory.getManyToManyDao(connector);
+    LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector);
     Set<Author> authors = new HashSet<>();
     Set<Integer> authorIds = editionDao.getSecond(info.getEdition().getId());
     for (int id : authorIds) {
@@ -238,20 +236,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void bindAuthors(EditionInfo info) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-//      ManyToManyDao<Edition, Author> editionDao = new ManyToManyDaoImpl(connector);
-//      LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector);
-//      Set<Author> authors = new HashSet<>();
-//      Set<Integer> authorIds = editionDao.getSecond(info.getEdition().getId());
-//      for (int id : authorIds) {
-//        authors.add(authorDao.get(id));
-//      }
-//      StringBuilder stringBuilder = new StringBuilder();
-//      for (Author a : authors) {
-//        stringBuilder.append(a.fieldForName(Author.SURNAME).getValue()).append(" ");
-//      }
-//      info.setAuthors(stringBuilder.toString());
       bindAuthors(info, connector);
-
     } catch (DaoException | LibraryEntityException e) {
       throw new ServiceException("Cannot find relevant books", e);
     }
@@ -274,13 +259,10 @@ public class LibraryService implements WelcomeServiceInterface {
   }
 
   @Override
-  public void addCode(String code) throws ServiceException {}
-
-  @Override
   public int editionIdByCode(String code) throws ServiceException {
     int editionId = 0;
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Edition> editionDao = new LibraryDaoImpl<>(TableEntityMapper.EDITION, connector);
+      LibraryDao<Edition> editionDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.EDITION, connector);
       EntityField<String> field = new EntityField<>(Edition.STANDARD_NUMBER);
       field.setValue(code);
       Criteria criteria = new Criteria();
@@ -298,7 +280,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void addBook(Book book) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       bookDao.add(book);
     } catch (DaoException e) {
       throw new ServiceException("Cannot add a book", e);
@@ -308,7 +290,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public int addEdition(Edition edition) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Edition> editionDao = new LibraryDaoImpl<>(TableEntityMapper.EDITION, connector);
+      LibraryDao<Edition> editionDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.EDITION, connector);
       return editionDao.add(edition);
     } catch (DaoException e) {
       throw new ServiceException("Cannot add an edition code", e);
@@ -318,7 +300,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public int addAuthor(Author author) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector);
+      LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector);
       return authorDao.add(author);
     } catch (DaoException e) {
       throw new ServiceException("Cannot add an author", e);
@@ -328,7 +310,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void bindEditionAndAuthors(int editionId, int[] authorsId) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      ManyToManyDao<Edition, Author> dao = new ManyToManyDaoImpl(connector);
+      ManyToManyDao<Edition, Author> dao = LibraryDaoFactory.getManyToManyDao(connector);
       for (int id : authorsId) {
         if (id != 0) {
           dao.bind(editionId, id);
@@ -340,19 +322,10 @@ public class LibraryService implements WelcomeServiceInterface {
   }
 
   @Override
-  public List<Author> findAuthors(Criteria criterion) throws ServiceException {
-    try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector);
-      return authorDao.read(criterion, true);
-    } catch (DaoException e) {
-      throw new ServiceException("Cannot find authors", e);
-    }
-  }
-
   public List<Author> findAuthors(Author author) throws ServiceException {
     List<Author> result = new ArrayList<>();
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Author> authorDao = new LibraryDaoImpl<>(TableEntityMapper.AUTHOR, connector);
+      LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector);
       if (author != null) {
         Criteria criteria = new Criteria();
         EntityField<String> surname = new EntityField<>(Author.SURNAME);
@@ -382,7 +355,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void decommissionBook(int bookId) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       EntityField<Integer> field = new EntityField<>(Book.LOCATION_ID);
       field.setValue(ConstantManager.LOCATION_DECOMMISSIONED);
       EntityField<Integer> reserved = new EntityField<>(Book.RESERVED);
@@ -404,7 +377,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public List<User> findUsers(String surname, String name) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<User> userDao = new LibraryDaoImpl<>(TableEntityMapper.USER, connector);
+      LibraryDao<User> userDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.USER, connector);
       EntityField<String> surnameField = new EntityField<>(User.SURNAME);
       surnameField.setValue(surname);
       EntityField<String> nameField = new EntityField<>(User.NAME);
@@ -421,7 +394,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void addUser(User user) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<User> userDao = new LibraryDaoImpl<>(TableEntityMapper.USER, connector);
+      LibraryDao<User> userDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.USER, connector);
       userDao.add(user);
     } catch (DaoException e) {
       throw new ServiceException("Cannot add users", e);
@@ -431,7 +404,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void changeStatus(int userId, int roleId) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<User> userDao = new LibraryDaoImpl<>(TableEntityMapper.USER, connector);
+      LibraryDao<User> userDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.USER, connector);
       EntityField<Integer> field = new EntityField<>(User.ROLE_ID);
       field.setValue(roleId);
       userDao.update(userId, field);
@@ -443,7 +416,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void orderBook(BookOrder bookOrder) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       int userId = bookOrder.getUserId();
       Set<EditionInfo> editionInfoSet = new HashSet<>(bookOrder.getEditionInfoSet());
       for (EditionInfo editionInfo : editionInfoSet) {
@@ -493,7 +466,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void prepareOrder(BookOrder bookOrder) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       for (EditionInfo editionInfo : bookOrder.getEditionInfoSet()) {
         Book book = editionInfo.getBook();
         int bookId = book.getId();
@@ -508,7 +481,6 @@ public class LibraryService implements WelcomeServiceInterface {
         }
         try {
           connector.suspendAutoCommit();
-          //bookDao.update(bookId, locField);
           bookDao.update(bookId, reserveField);
           connector.commit();
         } catch (SQLException throwables) {
@@ -524,7 +496,7 @@ public class LibraryService implements WelcomeServiceInterface {
 
   public void denyOrder(BookOrder bookOrder) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       for (EditionInfo editionInfo : bookOrder.getEditionInfoSet()) {
         Book book = editionInfo.getBook();
         int bookId = book.getId();
@@ -556,7 +528,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void fulfillOrder(BookOrder dispatchedOrder) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       for (EditionInfo editionInfo : dispatchedOrder.getEditionInfoSet()) {
         Book book = editionInfo.getBook();
         int bookId = book.getId();
@@ -584,7 +556,7 @@ public class LibraryService implements WelcomeServiceInterface {
           connector.restoreAutoCommit();
         }
         int editionId = editionInfo.getEdition().getId();
-        LibraryDao<Edition> editionDao = new LibraryDaoImpl<>(TableEntityMapper.EDITION, connector);
+        LibraryDao<Edition> editionDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.EDITION, connector);
         Edition edition = editionDao.get(editionId);
         int deliveries = (int) edition.fieldForName(Edition.DELIVERIES).getValue();
         deliveries++;
@@ -601,7 +573,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public Book findBookById(int bookId) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       return bookDao.get(bookId);
     } catch (DaoException e) {
       throw new ServiceException("Cannot find book", e);
@@ -611,7 +583,7 @@ public class LibraryService implements WelcomeServiceInterface {
   @Override
   public void fixReturn(Book book) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       int bookId = book.getId();
       EntityField<Integer> userField = new EntityField<>(Book.READER_ID);
       userField.setValue(null);
@@ -654,7 +626,7 @@ public class LibraryService implements WelcomeServiceInterface {
   public List<Book> findDeskBooksOnHands() throws ServiceException {
     List<Book> booksOnHands = new ArrayList<>();
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
       Criteria criteria = new Criteria();
       EntityField<Integer> locationId = new EntityField<>(Book.LOCATION_ID);
       locationId.setValue(ConstantManager.LOCATION_ON_HAND);
@@ -669,8 +641,8 @@ public class LibraryService implements WelcomeServiceInterface {
   private Collection<BookOrder> getOrder(int type) throws ServiceException {
     Collection<BookOrder> orders = new ArrayList<>();
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> bookDao = new LibraryDaoImpl<>(TableEntityMapper.BOOK, connector);
-      LibraryDao<Edition> editionDao = new LibraryDaoImpl<>(TableEntityMapper.EDITION, connector);
+      LibraryDao<Book> bookDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
+      LibraryDao<Edition> editionDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.EDITION, connector);
       Criteria criteria = new Criteria();
       EntityField<Integer> reservedField = new EntityField<>(Book.RESERVED);
       reservedField.setValue(type);

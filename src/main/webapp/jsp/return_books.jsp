@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="plib" uri="http://library.pavka.by" %>
 <fmt:setLocale value="${sessionScope.lan}"/>
 <fmt:setBundle basename="messages"/>
 <html>
@@ -37,7 +38,8 @@
                         </form>
                         </p>
                         <p>
-                        ${sessionScope.returning}
+<%--                        ${sessionScope.returning}--%>
+                        <plib:book-info book="${sessionScope.returning}" detailed="true"/>
                         <form name="fixReturnForm" method="POST" action="library">
                             <input type="hidden" name="command" value="fix_return"/>
                             <input type="submit" value="<fmt:message key="message.return"/>"/>

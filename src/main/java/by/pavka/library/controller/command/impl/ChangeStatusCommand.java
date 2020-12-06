@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ChangeStatusCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_USERS);
     String user = request.getParameter(USER);
     String role = request.getParameter(STATUS);
     if (user != null && role != null) {

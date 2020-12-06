@@ -22,23 +22,33 @@ public class BookTagHandler extends SimpleTagSupport {
 
   @Override
   public void doTag() throws JspException, IOException {
-    int id = book.getId();
-    String language = (String) getJspContext().findAttribute(ActionCommand.SESSION_ATTRIBUTE_LANGUAGE);
-    Locale locale = language == null ? Locale.getDefault() : new Locale(language);
-    String bookInfo = MessageManager.getProperty("message.bookinfo", locale);
-    String details = "";
-    if (detailed) {
-      try {
-        int userId = (int)book.fieldForName(Book.READER_ID).getValue();
-        LocalDate date = ((Date)book.fieldForName(Book.DUE_DATE).getValue()).toLocalDate();
-        String detailedInfo = MessageManager.getProperty("message.overdueinfo", locale);
-        details = String.format(detailedInfo, userId, date);
-      } catch (LibraryEntityException e) {
-        LOGGER.error("Cannot read user-info tag");
-        throw new SkipPageException("Cannot read user-info tag");
+    if (book != null) {
+      int id = book.getId();
+      String language = (String) getJspContext().findAttribute(ActionCommand.SESSION_ATTRIBUTE_LANGUAGE);
+      Locale locale = language == null ? Locale.getDefault() : new Locale(language);
+      String bookInfo = MessageManager.getProperty("message.bookinfo", locale);
+      String details = "";
+      if (detailed) {
+        try {
+          int userId = 0;
+          Object user = book.fieldForName(Book.READER_ID).getValue();
+          if (user != null) {
+            userId = (int)user;
+          }
+          LocalDate date = null;
+          Object d = book.fieldForName(Book.DUE_DATE).getValue();
+          if (d != null) {
+            date = ((Date)d).toLocalDate();
+          }
+          String detailedInfo = MessageManager.getProperty("message.overdueinfo", locale);
+          details = String.format(detailedInfo, userId, date);
+        } catch (LibraryEntityException e) {
+          LOGGER.error("Cannot read user-info tag");
+          throw new SkipPageException("Cannot read user-info tag");
+        }
       }
+      getJspContext().getOut().print(String.format(bookInfo, id) + details);
     }
-    getJspContext().getOut().print(String.format(bookInfo, id) + details);
   }
 
   public void setBook(Book book) {

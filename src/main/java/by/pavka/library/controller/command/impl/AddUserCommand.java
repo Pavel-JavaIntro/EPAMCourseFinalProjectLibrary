@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 public class AddUserCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_USERS);
     HttpSession session = request.getSession();
     String surname = (String)session.getAttribute(USER_SURNAME);
     String name = (String)session.getAttribute(USER_NAME);

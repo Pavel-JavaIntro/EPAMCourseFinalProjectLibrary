@@ -17,7 +17,7 @@ public class OrderBookCommand implements ActionCommand {
 
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.ORDER);
     HttpSession session = request.getSession();
     AppClient client = (AppClient)session.getAttribute(SESSION_ATTRIBUTE_CLIENT);
     String action = request.getParameter(ORDER);

@@ -15,7 +15,7 @@ public class AddBookCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
     HttpSession session = request.getSession();
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_BOOKS);
     String code = (String) session.getAttribute(CODE);
     session.removeAttribute(CODE);
     String loc = request.getParameter(BOOK_LOCATION);

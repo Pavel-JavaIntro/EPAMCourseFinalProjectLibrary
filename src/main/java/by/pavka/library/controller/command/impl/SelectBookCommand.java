@@ -30,6 +30,6 @@ public class SelectBookCommand implements ActionCommand {
         }
       }
     }
-    return new PageRouter();
+    return new PageRouter(PageRouter.SEARCH);
   }
 }

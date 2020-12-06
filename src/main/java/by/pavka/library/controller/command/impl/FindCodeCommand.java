@@ -13,7 +13,7 @@ import java.util.List;
 public class FindCodeCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
-    PageRouter pageRouter = new PageRouter();
+    PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_BOOKS);
     String code = request.getParameter(CODE);
     if (code != null) {
       LibraryService service = LibraryService.getInstance();

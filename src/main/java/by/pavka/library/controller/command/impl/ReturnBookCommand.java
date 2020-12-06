@@ -11,6 +11,7 @@ public class ReturnBookCommand implements ActionCommand {
   public PageRouter execute(HttpServletRequest request) {
     HttpSession session = request.getSession();
     session.removeAttribute(RESULT);
+    session.removeAttribute(RETURNING);
     return new PageRouter(PageRouter.RETURN_BOOKS);
   }
 }
