@@ -320,25 +320,11 @@ public class ProcessBookServiceImpl implements ProcessBookService {
       if (!editions.isEmpty()) {
         editionId = editions.get(0).getId();
       }
-      books = findBooksByEdition(editionId);
+      UtilService utilService = LibServiceFactory.getUtilService();
+      books = utilService.findBooksByEdition(editionId);
     } catch (DaoException e) {
       throw new ServiceException("Cannot find editions", e);
     }
     return books;
-  }
-
-  private List<Book> findBooksByEdition(int id) throws ServiceException {
-    List<Book> result = new ArrayList<>();
-    try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> dao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
-      Criteria criteria = new Criteria();
-      EntityField<Integer> edId = new EntityField<>(Book.EDITION_ID);
-      edId.setValue(id);
-      criteria.addConstraint(edId);
-      result.addAll(dao.read(criteria, true));
-    } catch (DaoException e) {
-      throw new ServiceException("Cannot find books", e);
-    }
-    return result;
   }
 }

@@ -8,15 +8,15 @@ import by.pavka.library.model.dao.DBConnector;
 import by.pavka.library.model.dao.DaoException;
 import by.pavka.library.model.dao.LibraryDao;
 import by.pavka.library.model.dao.LibraryDaoFactory;
-import by.pavka.library.model.service.GeneralService;
+import by.pavka.library.model.service.AuthService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.util.TableEntityMapper;
 
 import java.util.List;
 
-public class GeneralServiceImpl implements GeneralService {
+public class AuthServiceImpl implements AuthService {
 
-  GeneralServiceImpl() {}
+  AuthServiceImpl() {}
 
   @Override
   public User auth(String surname, String name, String password) throws ServiceException {

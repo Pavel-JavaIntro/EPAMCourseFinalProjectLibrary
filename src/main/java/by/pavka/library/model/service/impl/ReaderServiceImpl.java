@@ -100,25 +100,11 @@ public class ReaderServiceImpl implements ReaderService {
   @Override
   public void bindAuthors(EditionInfo info) throws ServiceException {
     try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      bindAuthors(info, connector);
+      UtilService utilService = LibServiceFactory.getUtilService();
+      utilService.bindAuthors(info, connector);
     } catch (DaoException | LibraryEntityException e) {
       throw new ServiceException("Cannot find relevant books", e);
     }
-  }
-
-  private void bindAuthors(EditionInfo info, DBConnector connector) throws DaoException, LibraryEntityException {
-    ManyToManyDao<Edition, Author> editionDao = LibraryDaoFactory.getManyToManyDao(connector);
-    LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector);
-    Set<Author> authors = new HashSet<>();
-    Set<Integer> authorIds = editionDao.getSecond(info.getEdition().getId());
-    for (int id : authorIds) {
-      authors.add(authorDao.get(id));
-    }
-    StringBuilder stringBuilder = new StringBuilder();
-    for (Author a : authors) {
-      stringBuilder.append(a.fieldForName(Author.SURNAME).getValue()).append(" ");
-    }
-    info.setAuthors(stringBuilder.toString());
   }
 
   @Override
@@ -140,7 +126,8 @@ public class ReaderServiceImpl implements ReaderService {
   private Book findFreeBookByEdition(int id) throws ServiceException {
     Book book = null;
     try {
-      List<Book> result = findBooksByEdition(id);
+      UtilService utilService = LibServiceFactory.getUtilService();
+      List<Book> result = utilService.findBooksByEdition(id);
       for (Book b : result) {
         System.out.println(b.fieldForName(Book.RESERVED).getValue());
         if (!b.fieldForName(Book.LOCATION_ID)
@@ -157,21 +144,6 @@ public class ReaderServiceImpl implements ReaderService {
       throw new ServiceException("Cannot find books", e);
     }
     return book;
-  }
-
-  private List<Book> findBooksByEdition(int id) throws ServiceException {
-    List<Book> result = new ArrayList<>();
-    try (DBConnector connector = DBConnectorPool.getInstance().obtainConnector()) {
-      LibraryDao<Book> dao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.BOOK, connector);
-      Criteria criteria = new Criteria();
-      EntityField<Integer> edId = new EntityField<>(Book.EDITION_ID);
-      edId.setValue(id);
-      criteria.addConstraint(edId);
-      result.addAll(dao.read(criteria, true));
-    } catch (DaoException e) {
-      throw new ServiceException("Cannot find books", e);
-    }
-    return result;
   }
 
   @Override

@@ -19,13 +19,15 @@ public class SelectBookCommand implements ActionCommand {
     int id = Integer.parseInt(idS);
     AppClient client = (AppClient) session.getAttribute(SESSION_ATTRIBUTE_CLIENT);
     Set<EditionInfo> editionInfos = (Set<EditionInfo>) session.getAttribute(EDITIONS);
-    for (EditionInfo info : editionInfos) {
-      if (id == info.getEdition().getId()) {
-        client.addEditionInfo(info);
-        if (desk != null) {
-          info.setLocationId(ConstantManager.LOCATION_DELIVERY_DESK_RESERVE);
-        } else {
-          info.setLocationId(ConstantManager.LOCATION_READING_HALL_RESERVE);
+    if (editionInfos != null) {
+      for (EditionInfo info : editionInfos) {
+        if (id == info.getEdition().getId()) {
+          client.addEditionInfo(info);
+          if (desk != null) {
+            info.setLocationId(ConstantManager.LOCATION_DELIVERY_DESK_RESERVE);
+          } else {
+            info.setLocationId(ConstantManager.LOCATION_READING_HALL_RESERVE);
+          }
         }
       }
     }

@@ -4,10 +4,11 @@ import by.pavka.library.model.service.*;
 
 public class LibServiceFactory {
   private static InitService initService = new InitServiceImpl();
-  private static GeneralService generalService = new GeneralServiceImpl();
+  private static AuthService authService = new AuthServiceImpl();
   private static ReaderService readerService = new ReaderServiceImpl();
   private static ProcessUserService processUserService = new ProcessUserServiceImpl();
   private static ProcessBookService processBookService = new ProcessBookServiceImpl();
+  private static UtilService utilService = new UtilService();
 
   private LibServiceFactory() {}
 
@@ -15,8 +16,8 @@ public class LibServiceFactory {
     return initService;
   }
 
-  public static GeneralService getAuthService() {
-    return generalService;
+  public static AuthService getAuthService() {
+    return authService;
   }
 
   public static ReaderService getReaderService() {
@@ -29,5 +30,9 @@ public class LibServiceFactory {
 
   public static ProcessBookService getProcessBookService() {
     return processBookService;
+  }
+
+  public static UtilService getUtilService() {
+    return utilService;
   }
 }

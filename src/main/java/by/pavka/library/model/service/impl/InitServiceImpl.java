@@ -88,7 +88,8 @@ public class InitServiceImpl implements InitService {
         editionInfo.setLocationId(locationId);
         int standardLocationId = (int)book.fieldForName(Book.STANDARD_LOCATION_ID).getValue();
         editionInfo.setStandardLocationId(standardLocationId);
-        bindAuthors(editionInfo, connector);
+        UtilService utilService = LibServiceFactory.getUtilService();
+        utilService.bindAuthors(editionInfo, connector);
         BookOrder bookOrder = new BookOrder(userId, editionInfo);
         orders.add(bookOrder);
       }
@@ -96,20 +97,5 @@ public class InitServiceImpl implements InitService {
       throw new ServiceException("Cannot get orders", e);
     }
     return orders;
-  }
-
-  private void bindAuthors(EditionInfo info, DBConnector connector) throws DaoException, LibraryEntityException {
-    ManyToManyDao<Edition, Author> editionDao = LibraryDaoFactory.getManyToManyDao(connector);
-    LibraryDao<Author> authorDao = LibraryDaoFactory.getLibraryDao(TableEntityMapper.AUTHOR, connector);
-    Set<Author> authors = new HashSet<>();
-    Set<Integer> authorIds = editionDao.getSecond(info.getEdition().getId());
-    for (int id : authorIds) {
-      authors.add(authorDao.get(id));
-    }
-    StringBuilder stringBuilder = new StringBuilder();
-    for (Author a : authors) {
-      stringBuilder.append(a.fieldForName(Author.SURNAME).getValue()).append(" ");
-    }
-    info.setAuthors(stringBuilder.toString());
   }
 }

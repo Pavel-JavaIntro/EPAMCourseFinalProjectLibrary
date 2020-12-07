@@ -6,7 +6,7 @@ import by.pavka.library.controller.validator.LibValidator;
 import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.client.AppClient;
 import by.pavka.library.entity.impl.User;
-import by.pavka.library.model.service.GeneralService;
+import by.pavka.library.model.service.AuthService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;
 import by.pavka.library.model.util.ConstantManager;
@@ -27,7 +27,7 @@ public class LoginCommand implements ActionCommand {
     String language = (String)session.getAttribute(SESSION_ATTRIBUTE_LANGUAGE);
     Locale locale = language == null ? Locale.getDefault() : new Locale(language);
     if (LibValidator.validateLogin(surname, name, password)) {
-      GeneralService service = LibServiceFactory.getAuthService();
+      AuthService service = LibServiceFactory.getAuthService();
       try {
         User user = service.auth(surname, name, password);
         if (user != null) {
