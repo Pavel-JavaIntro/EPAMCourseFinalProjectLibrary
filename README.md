@@ -15,3 +15,10 @@ The READER can select books and order available ones for reading in a reading ha
 The SUBSCRIBER have a choice between ordering books to a reading hall or to the delivery desk of the Library.
 
 ### User - LIBRARIAN
+This user has an access to the three main functionality groups:
+- Processing other users - the Librarian can add READERS and SIBSCRIBERS to the system and can change their status (roles)
+- Processing READER/SUBSCRIBER orders - the Librarian can look through other users' book orders, can prepare orders to dispatching, dispatch them, return books from the users.
+- Processing books - the Librarian can add new editions and concrete books, decommission them.
+
+### User - ADMIN
+This user can add LIBRARIANS in the system
