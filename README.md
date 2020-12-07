@@ -8,10 +8,10 @@ The roles are listed from those with the least functionality to the most advance
 This is a default role. Every Internet user has an access to its functionality. This one includes abilities to search books in this Library by titles or authors.
 
 ### User - READER
-The initial reader registration is made by ADMIN (see below). Signing in is made by providing the surname, name and the password sent by email during the registration process.
+The initial reader registration is made by LIBRARIAN (see below). Signing in is made by providing the surname, name and the password sent by email during the registration process.
 The READER can select books and order available ones for reading in a reading hall of the Library.
 
 ### User - SUBSCRIBER
 The SUBSCRIBER have a choice between ordering books to a reading hall or to the delivery desk of the Library.
 
-### User - ADMIN
+### User - LIBRARIAN
