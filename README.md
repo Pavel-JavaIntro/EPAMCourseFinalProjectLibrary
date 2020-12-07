@@ -13,3 +13,5 @@ The READER can select books and order available ones for reading in a reading ha
 
 ### User - SUBSCRIBER
 The SUBSCRIBER have a choice between ordering books to a reading hall or to the delivery desk of the Library.
+
+### User - ADMIN
