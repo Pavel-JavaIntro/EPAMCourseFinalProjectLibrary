@@ -12,4 +12,4 @@ The initial reader registration is made by ADMIN (see below). Signing in is made
 The READER can select books and order available ones for reading in a reading hall of the Library.
 
 ### User - SUBSCRIBER
-The SUBSCRIBER have a choice between ordering books in a reading hall or to the delivery desk of the Library.
+The SUBSCRIBER have a choice between ordering books to a reading hall or to the delivery desk of the Library.
