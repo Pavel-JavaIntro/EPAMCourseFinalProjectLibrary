@@ -12,6 +12,15 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.util.ResourceBundle;
 
+/**
+ * LibraryStarter
+ * <p>
+ * ServletContextListener initializing the database connection pool, downloading constants from the database and initializing
+ * lists of users' book orders.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class LibraryStarter implements ServletContextListener {
   private static final Logger LOGGER = LogManager.getLogger(LibraryStarter.class.getName());
 
@@ -28,7 +37,6 @@ public class LibraryStarter implements ServletContextListener {
 
   public void contextDestroyed(ServletContextEvent servletContextEvent) {
     LOGGER.info("FINISHED");
-//    DBConnectionPool.getInstance().disconnect();
     DBConnectorPool.getInstance().disconnect();
   }
 }

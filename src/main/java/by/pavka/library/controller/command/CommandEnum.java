@@ -2,7 +2,14 @@ package by.pavka.library.controller.command;
 
 import by.pavka.library.controller.command.impl.*;
 
-
+/**
+ * CommandEnum
+ * <p>
+ * Enum containing possible ActionCommands of the application.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public enum CommandEnum {
   EMPTY(new EmptyCommand()),
   WELCOME(new WelcomeCommand()),

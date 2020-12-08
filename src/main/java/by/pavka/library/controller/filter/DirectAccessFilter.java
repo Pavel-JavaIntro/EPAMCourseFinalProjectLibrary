@@ -7,6 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * DirectAccessFilter
+ * <p>
+ * The filter prevents access to JSP directly from the address line
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 @WebFilter(
     urlPatterns = {"/jsp/*"},
     initParams = {@WebInitParam(name = "error", value = "denied.jsp")})

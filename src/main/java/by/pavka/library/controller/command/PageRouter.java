@@ -1,5 +1,14 @@
 package by.pavka.library.controller.command;
 
+/**
+ * PageRouter
+ * <p>
+ * The class presents a return value of ActionCommand execution and contains the JSP address and transition type to
+ * to forward or to redirect to.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class PageRouter {
   public static final String WELCOME = "/jsp/welcome.jsp";
   public static final String ERROR = "/jsp/error.jsp";

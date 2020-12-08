@@ -3,6 +3,14 @@ package by.pavka.library.controller.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+/**
+ * CharacterSetFilter
+ * <p>
+ * The Filter sets UTF-8 in and out encoding.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class CharacterSetFilter implements Filter {
   private String code;
   private String ENCODING = "encoding";

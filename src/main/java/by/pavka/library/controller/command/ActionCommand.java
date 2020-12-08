@@ -6,6 +6,14 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * ActionCommand
+ * <p>
+ * Basing interface for the application commands. Contains a default method called by the servlet.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public interface ActionCommand {
   public static final Logger LOGGER = LogManager.getLogger(ActionCommand.class);
   public static final String SESSION_ATTRIBUTE_CLIENT = "client";
@@ -54,6 +62,12 @@ public interface ActionCommand {
   public static final String RESULT = "result";
   public static final String OVERDUE = "overdue";
 
+  /**
+   * Wrapper method over execute(HttpServletRequest)
+   *
+   * @param request
+   * @return
+   */
   default PageRouter executeCommand(HttpServletRequest request) {
     HttpSession session = request.getSession();
     String page = (String) session.getAttribute(SESSION_ATTRIBUTE_PAGE);
