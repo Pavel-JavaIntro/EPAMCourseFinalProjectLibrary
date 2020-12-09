@@ -16,6 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * AddEditionCommand
+ * <p>
+ * This command is executed while a librarian adds a new edition to the library
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class AddEditionCommand implements ActionCommand {
   public static final String AUTHOR_SURNAME = "surname";
   public static final String AUTHOR_NAME = "name";
@@ -93,7 +101,7 @@ public class AddEditionCommand implements ActionCommand {
       service.addBook(book);
       for (int i = 0; i < 3; i++) {
         //if (criteria[i] != null) {
-          //List<Author> authorList = service.findAuthors(criteria[i]);
+        //List<Author> authorList = service.findAuthors(criteria[i]);
         if (athrs[i] != null) {
           List<Author> authorList = service.findAuthors(athrs[i]);
           if (!authorList.isEmpty()) {

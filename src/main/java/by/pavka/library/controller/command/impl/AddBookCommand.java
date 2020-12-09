@@ -13,6 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * AddBookCommand
+ * <p>
+ * This command is executed while a librarian adds a new book copy of and existing edition
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class AddBookCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

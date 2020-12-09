@@ -13,13 +13,21 @@ import by.pavka.library.model.util.ConstantManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * AddUserCommand
+ * <p>
+ * This command is executed while a librarian (admin) adds a new user to the librarian setting its status / role
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class AddUserCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
     PageRouter pageRouter = new PageRouter(PageRouter.PROCESS_USERS);
     HttpSession session = request.getSession();
-    String surname = (String)session.getAttribute(USER_SURNAME);
-    String name = (String)session.getAttribute(USER_NAME);
+    String surname = (String) session.getAttribute(USER_SURNAME);
+    String name = (String) session.getAttribute(USER_NAME);
     if (surname == null || name == null) {
       return pageRouter;
     }

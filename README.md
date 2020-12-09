@@ -17,8 +17,18 @@ The SUBSCRIBER have a choice between ordering books to a reading hall or to the 
 ### User - LIBRARIAN
 This user has an access to the three main functionality groups:
 - Processing other users - the Librarian can add READERS and SIBSCRIBERS to the system and can change their status (roles)
-- Processing READER/SUBSCRIBER orders - the Librarian can look through other users' book orders, can prepare orders to dispatching, dispatch them, return books from the users.
+- Processing READER/SUBSCRIBER orders - the Librarian can look through other users' book orders, can prepare orders to dispatching, dispatch them, return books from the users and control overdue books on hands.
 - Processing books - the Librarian can add new editions and concrete books, decommission them.
 
 ### User - ADMIN
 This user can add LIBRARIANS in the system
+
+## Terms.
+Two groups of related concepts are presented in the application:
+#### Related to books: 
+- **Book** presents a physical copy of a book edition. The library can contain many book copies that are equivalent for a reader but not equivalent for a librarian because they may have different locatons.
+- **Edition** presents an abstraction describing the title, authors, year of publishing, etc. Readers normally search editions, not books.
+- **EditionInfo** presents an auxiliary object combining Book data and Edition data. It allows to present information about a concrete book using edition data common for all copies of the edition (for example, book title).
+#### Related to users:
+- **User** presents an entity kept in the database. It contains all available info about a user.
+- **AppClient** presents a session object. It contains only some infomation allowing application to separate access for different users' roles.
