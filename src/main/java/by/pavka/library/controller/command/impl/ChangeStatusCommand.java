@@ -10,6 +10,15 @@ import by.pavka.library.model.util.ConstantManager;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * ChangeStatusCommand
+ * <p>
+ * This command is executed when a librarian (admin) changes a status of another user among "guest", "reader", "subscriber"
+ * (and "librarian").
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ChangeStatusCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

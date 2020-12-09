@@ -9,6 +9,14 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * DecommissionBookCommand
+ * <p>
+ * This command is executed when a librarian decommission a book
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class DecommissionBookCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

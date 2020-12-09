@@ -13,6 +13,14 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Queue;
 
+/**
+ * DispatchCommand
+ * <p>
+ * This command is executed when a librarian dispatches an orered and prepared book to a reader
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class DispatchCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
