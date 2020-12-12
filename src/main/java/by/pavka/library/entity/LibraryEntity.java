@@ -5,6 +5,12 @@ import by.pavka.library.entity.criteria.EntityField;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Abstract class presenting an entity that corresponds to the database table.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public abstract class LibraryEntity implements Serializable {
   private final EntityField<?>[] fields;
   private int id;
@@ -19,7 +25,7 @@ public abstract class LibraryEntity implements Serializable {
     return fields;
   }
 
-  public EntityField fieldForName(String name) throws LibraryEntityException{
+  public EntityField fieldForName(String name) throws LibraryEntityException {
     for (EntityField field : fields) {
       if (field.getName().equals(name)) {
         return field;

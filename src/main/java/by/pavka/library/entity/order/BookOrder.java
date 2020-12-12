@@ -5,6 +5,12 @@ import by.pavka.library.entity.client.AppClient;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+/**
+ * The class represents a reader order
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class BookOrder {
   private final int userId;
   private final Set<EditionInfo> editionInfoSet;

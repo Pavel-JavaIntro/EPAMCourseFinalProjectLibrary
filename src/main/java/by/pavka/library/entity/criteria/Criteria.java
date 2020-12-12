@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents search criteria constraining database queries.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class Criteria implements Serializable {
   List<EntityField<?>> constraints = new ArrayList<>();
 

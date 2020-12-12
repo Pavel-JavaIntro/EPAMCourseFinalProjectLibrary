@@ -15,6 +15,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Pull of connectors to the database including sql connection and a wrapper
+ *
+ * @version 1.0
+ * @uthor Pavel Kassitchev
+ */
 public class DBConnectorPool {
   private static final Logger LOGGER = LogManager.getLogger(DBConnectorPool.class);
   private static final DBConnectorPool INSTANCE = new DBConnectorPool();
@@ -125,7 +131,7 @@ public class DBConnectorPool {
     for (DBConnector connector : usedConnections) {
       releaseConnector(connector);
     }
-    for (DBConnector connector :  connections) {
+    for (DBConnector connector : connections) {
       try {
         connector.getConnection().close();
       } catch (SQLException ex) {
@@ -134,7 +140,7 @@ public class DBConnectorPool {
     }
     Enumeration<Driver> drivers = DriverManager.getDrivers();
     Driver driver;
-    while(drivers.hasMoreElements()) {
+    while (drivers.hasMoreElements()) {
       try {
         driver = drivers.nextElement();
         DriverManager.deregisterDriver(driver);

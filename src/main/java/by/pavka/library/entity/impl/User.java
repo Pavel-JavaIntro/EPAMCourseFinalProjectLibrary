@@ -4,6 +4,12 @@ import by.pavka.library.entity.LibraryEntity;
 import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.criteria.EntityField;
 
+/**
+ * Extension of LibraryEntity
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class User extends LibraryEntity {
   public static final String ROLE_ID = "roleId";
   public static final String SURNAME = "surname";

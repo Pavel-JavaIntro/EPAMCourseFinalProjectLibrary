@@ -9,6 +9,16 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * AppClient
+ * <p>
+ * The abstract class represents a user entity without database user confidential info but with data about the books
+ * ordered by the user. The class also contains navigation methods where returning address of a jsp fragment depends on
+ * the user role.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public abstract class AppClient implements Serializable {
   private int id;
   private String surname;

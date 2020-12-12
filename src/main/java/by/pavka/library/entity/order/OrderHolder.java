@@ -12,6 +12,13 @@ import java.util.Collection;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * The class contains queues of orders - just placed by readers or processed be librarians. It is a kind of cash for the database
+ * data about ordered and prepared books
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class OrderHolder {
   private static final Logger LOGGER = LogManager.getLogger(OrderHolder.class);
   private static final OrderHolder instance = new OrderHolder();

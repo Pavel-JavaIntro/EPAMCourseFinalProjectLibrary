@@ -2,6 +2,13 @@ package by.pavka.library.entity.criteria;
 
 import java.io.Serializable;
 
+/**
+ * The class represents a generic field of type T in a LibraryEntity object
+ *
+ * @param <T> is a type of the field
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class EntityField<T> implements Serializable {
   private final String name;
   private T value;

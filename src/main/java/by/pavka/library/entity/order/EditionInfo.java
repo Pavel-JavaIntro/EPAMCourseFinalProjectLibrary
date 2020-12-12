@@ -7,6 +7,13 @@ import by.pavka.library.entity.impl.Edition;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * An auxiliary class combining info about an edition and a concrete available (if not null) book of this edition.
+ * It also encapsulates destination of an ordered book (locationId)
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class EditionInfo implements Serializable {
   private static final String AVAILABLE = "available";
   private static final String NOT_AVAILABLE = "not available";

@@ -3,6 +3,12 @@ package by.pavka.library.entity.impl;
 import by.pavka.library.entity.LibraryEntity;
 import by.pavka.library.entity.criteria.EntityField;
 
+/**
+ * Extension of LibraryEntity
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class Edition extends LibraryEntity {
   public static final String STANDARD_NUMBER = "standardNumber";
   public static final String TITLE = "title";

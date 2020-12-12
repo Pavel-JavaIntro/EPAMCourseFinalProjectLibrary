@@ -1,6 +1,12 @@
 package by.pavka.library.entity;
 
-public class LibraryEntityException extends Exception{
+/**
+ * Exception
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
+public class LibraryEntityException extends Exception {
   public LibraryEntityException() {
   }
 

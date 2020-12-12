@@ -5,6 +5,12 @@ import by.pavka.library.entity.criteria.EntityField;
 
 import java.time.LocalDate;
 
+/**
+ * Extension of LibraryEntity
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class Book extends LibraryEntity {
   public static final String EDITION_ID = "editionId";
   public static final String LOCATION_ID = "locationId";
