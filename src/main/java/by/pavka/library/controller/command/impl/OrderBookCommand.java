@@ -14,6 +14,15 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * OrderBookCommand
+ * <p>
+ * This command is executed when a reader processes books in his or her basket. The reader can either confirm the order
+ * or delete books from the basket.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class OrderBookCommand implements ActionCommand {
   private static final String UNSELECT = "unselect";
 
@@ -21,9 +30,9 @@ public class OrderBookCommand implements ActionCommand {
   public PageRouter execute(HttpServletRequest request) {
     PageRouter pageRouter = new PageRouter(PageRouter.ORDER);
     HttpSession session = request.getSession();
-    AppClient client = (AppClient)session.getAttribute(SESSION_ATTRIBUTE_CLIENT);
+    AppClient client = (AppClient) session.getAttribute(SESSION_ATTRIBUTE_CLIENT);
     String action = request.getParameter(ORDER);
-    if(action.equals(UNSELECT)) {
+    if (action.equals(UNSELECT)) {
       int editionId = 0;
       if (request.getParameter(BOOK) != null) {
         editionId = Integer.parseInt(request.getParameter(BOOK));

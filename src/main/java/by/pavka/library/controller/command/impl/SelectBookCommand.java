@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Set;
 
+/**
+ * SelectBookCommand
+ * <p>
+ * This command is executed when a reader puts a book into the basket.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class SelectBookCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

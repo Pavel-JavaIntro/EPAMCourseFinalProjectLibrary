@@ -12,7 +12,7 @@ The initial reader registration is made by LIBRARIAN (see below). Signing in is 
 The READER can select books and order available ones for reading in a reading hall of the Library.
 
 ### User - SUBSCRIBER
-The SUBSCRIBER have a choice between ordering books to a reading hall or to the delivery desk of the Library.
+The SUBSCRIBER has a choice between ordering books to a reading hall or to the delivery desk of the Library. In the javadoc comments the term "reader" is applied both to READER and SUBSCRIBER where there are no specific subscriber's features explained.
 
 ### User - LIBRARIAN
 This user has an access to the three main functionality groups:
@@ -21,7 +21,7 @@ This user has an access to the three main functionality groups:
 - Processing books - the Librarian can add new editions and concrete books, decommission them.
 
 ### User - ADMIN
-This user can add LIBRARIANS in the system
+This user can add LIBRARIANS in the system. In the javadoc comments the term "librarian" is applied both to LIBRARIAN and ADMIN where there are no specific admin's features explained.
 
 ## Terms.
 Two groups of related concepts are presented in the application:

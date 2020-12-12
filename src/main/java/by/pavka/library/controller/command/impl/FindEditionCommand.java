@@ -15,6 +15,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * FinEditionCommand
+ * <p>
+ * This command is executed when a reader wants to find available books by titles or / and authors.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class FindEditionCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

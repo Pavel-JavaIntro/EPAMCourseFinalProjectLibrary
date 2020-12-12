@@ -11,6 +11,14 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * ReturnCommand
+ * <p>
+ * This command is executed when a librarian input a book ID. It despays the book data.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ReturnCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

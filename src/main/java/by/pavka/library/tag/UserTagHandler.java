@@ -14,6 +14,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * This extension of SimpleTagSupport presents a user friendly info about a user.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class UserTagHandler extends SimpleTagSupport {
   private static final Logger LOGGER = LogManager.getLogger(UserTagHandler.class);
   private User user;

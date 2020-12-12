@@ -12,6 +12,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * WelcomeCommand
+ * <p>
+ * This command is executed first and routs the application to a welcome page.
+ *
+ * @author Pavel Kassitchev
+ * @vrsion 1.0
+ */
 public class WelcomeCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

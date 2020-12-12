@@ -11,6 +11,14 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * FixReturnCommand
+ * <p>
+ * This command is executed when a librarian confirms return of a book by a reader.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class FixReturnCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

@@ -16,6 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Locale;
 
+/**
+ * LoginCommand
+ * <p>
+ * This command is executed when a user inputs his or her login and password. The fields are firstly checked on the client
+ * side, then preliminary validated on the server side and finally validated against the database data.
+ *
+ * @author PavrlKassitchev
+ * @version 1.0
+ */
 public class LoginCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
@@ -24,7 +33,7 @@ public class LoginCommand implements ActionCommand {
     String name = request.getParameter(NAME);
     String password = request.getParameter(PASSWORD);
     HttpSession session = request.getSession();
-    String language = (String)session.getAttribute(SESSION_ATTRIBUTE_LANGUAGE);
+    String language = (String) session.getAttribute(SESSION_ATTRIBUTE_LANGUAGE);
     Locale locale = language == null ? Locale.getDefault() : new Locale(language);
     if (LibValidator.validateLogin(surname, name, password)) {
       AuthService service = LibServiceFactory.getAuthService();

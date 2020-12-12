@@ -15,6 +15,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * This extension of SimpleTagSupport presents a user friendly info about an edition.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class EditionTagHandler extends SimpleTagSupport {
   private static final Logger LOGGER = LogManager.getLogger(EditionTagHandler.class);
   private static final String INFO = "\"%s\", %s, %s";

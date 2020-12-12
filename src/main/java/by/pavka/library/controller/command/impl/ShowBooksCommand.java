@@ -8,6 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Queue;
 
+/**
+ * ShowBooksCommand
+ * <p>
+ * This command is executed when a librarian wants to see a list of books that are prepared for dispatching to readers.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ShowBooksCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

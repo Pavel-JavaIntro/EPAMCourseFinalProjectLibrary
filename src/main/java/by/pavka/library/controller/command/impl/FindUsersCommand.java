@@ -12,6 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * FindUsersCommand
+ * <p>
+ * This command is executed when a librarian inputs a surnme and a name of a user either to add a new one or
+ * to change a status / role of an existing one.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class FindUsersCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

@@ -15,6 +15,12 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Locale;
 
+/**
+ * This extension of SimpleTagSupport presents a user friendly info about a book.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class BookTagHandler extends SimpleTagSupport {
   private static final Logger LOGGER = LogManager.getLogger(UserTagHandler.class);
   private Book book;
@@ -33,12 +39,12 @@ public class BookTagHandler extends SimpleTagSupport {
           int userId = 0;
           Object user = book.fieldForName(Book.READER_ID).getValue();
           if (user != null) {
-            userId = (int)user;
+            userId = (int) user;
           }
           LocalDate date = null;
           Object d = book.fieldForName(Book.DUE_DATE).getValue();
           if (d != null) {
-            date = ((Date)d).toLocalDate();
+            date = ((Date) d).toLocalDate();
           }
           String detailedInfo = MessageManager.getProperty("message.overdueinfo", locale);
           details = String.format(detailedInfo, userId, date);

@@ -16,6 +16,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * OverdueBooksCommand
+ * <p>
+ * This command is executed when a librarian wants to see a list of overdue books.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class OverdueBooksCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
@@ -31,7 +39,7 @@ public class OverdueBooksCommand implements ActionCommand {
       System.out.println(onHandsBooks);
       System.out.println(onHandsBooks.size());
       for (Book book : onHandsBooks) {
-        Date dueSqlDate = (Date)book.fieldForName(Book.DUE_DATE).getValue();
+        Date dueSqlDate = (Date) book.fieldForName(Book.DUE_DATE).getValue();
         if (dueSqlDate != null) {
           LocalDate dueDate = dueSqlDate.toLocalDate();
           if (date.isAfter(dueDate)) {

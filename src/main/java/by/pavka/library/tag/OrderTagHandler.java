@@ -13,6 +13,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * This extension of SimpleTagSupport presents a user friendly info about a book order.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class OrderTagHandler extends SimpleTagSupport {
   private static final Logger LOGGER = LogManager.getLogger(OrderTagHandler.class);
   private BookOrder order;

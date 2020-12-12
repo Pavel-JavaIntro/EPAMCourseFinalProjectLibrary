@@ -8,6 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Queue;
 
+/**
+ * ShowOrdersCommand
+ * <p>
+ * This command is executed when a librarian wants to see a list of books that are ordered by readers.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ShowOrdersCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {

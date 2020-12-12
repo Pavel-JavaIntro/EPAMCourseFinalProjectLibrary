@@ -13,6 +13,15 @@ import by.pavka.library.model.service.impl.LibServiceFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Queue;
 
+/**
+ * PrepareBookCommand
+ * <p>
+ * This command is executed when a librarian either prepare a book from a reader's order (transfer it to another location)
+ * or deny the order.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class PrepareBookCommand implements ActionCommand {
   public static final String PREPARE = "prepare";
 

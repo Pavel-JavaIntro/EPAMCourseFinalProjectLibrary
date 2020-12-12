@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 /**
  * BookOptionsCommand
  * <p>
- * This command routs a librarian to the page from where he can find books by edtion id, add editions or books, decommission books.
+ * This command routs a librarian to the page from where he can find books by edition id, add editions or books, decommission books.
  *
  * @author Pavel Kassitchev
  * version 1.0

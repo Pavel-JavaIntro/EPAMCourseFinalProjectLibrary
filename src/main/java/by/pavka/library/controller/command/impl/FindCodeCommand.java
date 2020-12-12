@@ -12,6 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * FindCodeCommand
+ * <p>
+ * This command is executed when a librarian wants to add a new book to the library firstly checking if the edition
+ * code already exists.
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class FindCodeCommand implements ActionCommand {
   @Override
   public PageRouter execute(HttpServletRequest request) {
@@ -31,7 +40,8 @@ public class FindCodeCommand implements ActionCommand {
           List<Book> books = service.findBooksByEditionCode(code);
           System.out.println("LIST LENGTH IS " + books.size());
           session.setAttribute(ADDITION, PageRouter.BOOK_ADDITION);
-          session.setAttribute(DECOMMISSION, books);}
+          session.setAttribute(DECOMMISSION, books);
+        }
       } catch (ServiceException e) {
         pageRouter.setPage(PageRouter.ERROR);
         LOGGER.error("FindCodeCommand hasn't completed");
