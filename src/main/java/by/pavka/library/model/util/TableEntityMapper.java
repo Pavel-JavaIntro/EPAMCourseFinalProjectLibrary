@@ -3,6 +3,12 @@ package by.pavka.library.model.util;
 import by.pavka.library.entity.EntityExtractor;
 import by.pavka.library.entity.impl.*;
 
+/**
+ * The class maps database tables and entity fields
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public enum TableEntityMapper {
 
   GENRE("genres", new EntityExtractor<Genre>() {

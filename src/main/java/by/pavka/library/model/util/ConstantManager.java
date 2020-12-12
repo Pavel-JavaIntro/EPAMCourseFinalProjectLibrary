@@ -11,6 +11,12 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The class downloads from the database and kepps constants
+ *
+ * @author Pavel Kassitchev
+ * @version 1,0
+ */
 public class ConstantManager {
 
   private static final Logger LOGGER = LogManager.getLogger(ConstantManager.class.getName());
