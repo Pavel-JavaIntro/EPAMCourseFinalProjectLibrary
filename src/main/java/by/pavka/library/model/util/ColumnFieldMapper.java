@@ -12,6 +12,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The class maps a LibraryEntity subclass T fields into database table column names using a convertor
+ *
+ * @author Pavel Kassitchev
+ * @version 1.o
+ * @param <T>
+ */
 public class ColumnFieldMapper<T extends LibraryEntity> {
   private static final Logger LOGGER = LogManager.getLogger(ColumnFieldMapper.class.getName());
   private static final ColumnFieldMapper<Location> locationMapper = new ColumnFieldMapper<>(new Location());

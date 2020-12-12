@@ -2,6 +2,12 @@ package by.pavka.library.model.util.converter;
 
 import by.pavka.library.entity.criteria.EntityField;
 
+/**
+ * Default implementation of FieldColumnConvertor converting a camelcase field name into underscore-case column name
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class DefaultFieldColumnConverter implements FieldColumnConverter {
 
   @Override
