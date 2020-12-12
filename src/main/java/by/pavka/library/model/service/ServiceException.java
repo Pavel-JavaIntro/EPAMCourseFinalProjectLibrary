@@ -1,5 +1,11 @@
 package by.pavka.library.model.service;
 
+/**
+ * Exception
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ServiceException extends Exception {
   public ServiceException() {
   }
