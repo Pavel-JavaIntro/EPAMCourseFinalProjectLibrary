@@ -4,7 +4,7 @@ import by.pavka.library.entity.EntityExtractor;
 import by.pavka.library.entity.impl.*;
 
 /**
- * The class maps database tables and entity fields
+ * The class maps database tables and EntityExtractors creation LibraryEntity objects
  *
  * @author Pavel Kassitchev
  * @version 1.0
