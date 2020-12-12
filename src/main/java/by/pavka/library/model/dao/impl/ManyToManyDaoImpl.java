@@ -13,6 +13,12 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The class implements ManyToManyDao presenting edition - author relations
+ *
+ * @version 1.0
+ * @Author Pavel Kassitchev
+ */
 public class ManyToManyDaoImpl extends LibraryDaoImpl<Edition>
     implements ManyToManyDao<Edition, Author> {
   private static final String EDITION_ID = "edition_id";

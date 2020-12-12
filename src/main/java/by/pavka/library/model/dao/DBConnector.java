@@ -9,6 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Wrapper over sql connection
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class DBConnector implements AutoCloseable {
   private static final Logger LOGGER = LogManager.getLogger(DBConnector.class);
   private final Connection connection;

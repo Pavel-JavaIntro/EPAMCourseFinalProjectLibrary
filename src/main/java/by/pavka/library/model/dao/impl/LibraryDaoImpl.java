@@ -20,6 +20,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class implements LibraryDao
+ *
+ * @param <T>
+ * @version 1.0
+ * @Author Pavel Kassitchev
+ */
 public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, EntityExtractor<T> {
   private static final String INSERT = "INSERT INTO %s ";
   private static final String LIST_ALL = "SELECT * FROM ";
@@ -177,7 +184,8 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
   }
 
   @Override
-  public void close() {}
+  public void close() {
+  }
 
   private String getTableName() {
     return tableName;

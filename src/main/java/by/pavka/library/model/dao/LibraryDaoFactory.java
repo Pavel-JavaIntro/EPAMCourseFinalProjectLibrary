@@ -7,6 +7,12 @@ import by.pavka.library.model.dao.impl.LibraryDaoImpl;
 import by.pavka.library.model.dao.impl.ManyToManyDaoImpl;
 import by.pavka.library.model.util.TableEntityMapper;
 
+/**
+ * simple factory returning a new instance
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class LibraryDaoFactory {
 
   public static <T extends LibraryEntity> LibraryDao<T> getLibraryDao(TableEntityMapper mapper, DBConnector connector) throws DaoException {

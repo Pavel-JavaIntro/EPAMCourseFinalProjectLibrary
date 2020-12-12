@@ -6,14 +6,28 @@ import by.pavka.library.entity.criteria.EntityField;
 
 import java.util.List;
 
+/**
+ * LibraryDao interface related to a LibraryEntity extension
+ *
+ * @param <T>
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public interface LibraryDao<T extends LibraryEntity> extends AutoCloseable {
   int add(T entity) throws DaoException;
+
   List<T> read(Criteria criteria, boolean strict) throws DaoException;
+
   List<T> read() throws DaoException;
+
   T get(int id) throws DaoException;
+
   void remove(int id) throws DaoException;
+
   void update(int id, EntityField<?> fields) throws DaoException;
-  boolean contains(Criteria criteria, boolean strict)throws DaoException;
+
+  boolean contains(Criteria criteria, boolean strict) throws DaoException;
+
   @Override
   void close();
 
