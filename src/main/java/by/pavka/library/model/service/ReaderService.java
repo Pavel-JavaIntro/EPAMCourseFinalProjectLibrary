@@ -6,6 +6,12 @@ import by.pavka.library.entity.order.EditionInfo;
 
 import java.util.List;
 
+/**
+ * Interface providing reader level methods
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public interface ReaderService {
   List<Edition> findEditions(String title, String author) throws ServiceException;
 

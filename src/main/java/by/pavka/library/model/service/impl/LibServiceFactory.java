@@ -2,6 +2,12 @@ package by.pavka.library.model.service.impl;
 
 import by.pavka.library.model.service.*;
 
+/**
+ * Simple factory providing singleton instances
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class LibServiceFactory {
   private static InitService initService = new InitServiceImpl();
   private static AuthService authService = new AuthServiceImpl();

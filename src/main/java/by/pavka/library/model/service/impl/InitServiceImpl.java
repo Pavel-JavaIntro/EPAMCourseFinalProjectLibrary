@@ -19,6 +19,12 @@ import by.pavka.library.model.util.TableEntityMapper;
 
 import java.util.*;
 
+/**
+ * Implementation of the relevant interface
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class InitServiceImpl implements InitService {
 
   InitServiceImpl() {}

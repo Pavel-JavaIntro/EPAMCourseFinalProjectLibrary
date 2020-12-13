@@ -21,6 +21,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implementation of the relevant interface
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ReaderServiceImpl implements ReaderService {
 
   ReaderServiceImpl() {}

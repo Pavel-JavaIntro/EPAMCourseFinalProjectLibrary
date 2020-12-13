@@ -3,7 +3,6 @@ package by.pavka.library.controller.command.impl;
 import by.pavka.library.controller.command.ActionCommand;
 import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.impl.User;
-import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ProcessUserService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;

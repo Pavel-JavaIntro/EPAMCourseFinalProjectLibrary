@@ -6,7 +6,6 @@ import by.pavka.library.entity.client.AppClient;
 import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.entity.order.OrderHolder;
-import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ReaderService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;

@@ -7,7 +7,6 @@ import by.pavka.library.entity.criteria.EntityField;
 import by.pavka.library.entity.impl.Author;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.entity.impl.Edition;
-import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;

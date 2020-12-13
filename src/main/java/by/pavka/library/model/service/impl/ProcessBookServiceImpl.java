@@ -20,6 +20,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the relevant interface
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 public class ProcessBookServiceImpl implements ProcessBookService {
 
   ProcessBookServiceImpl() {}

@@ -5,7 +5,6 @@ import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.entity.order.OrderHolder;
-import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ProcessBookService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;

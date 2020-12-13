@@ -17,6 +17,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Auxiliary service with package level access auxiliary methods
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
 class UtilService {
 
   UtilService() {}

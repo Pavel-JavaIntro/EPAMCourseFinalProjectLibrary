@@ -7,6 +7,13 @@ import by.pavka.library.entity.order.BookOrder;
 
 import java.util.List;
 
+/**
+ * Interface providing librarian level methods related to books and book orders
+ *
+ * @author Pavel Kassitchev
+ * @version 1.0
+ */
+
 public interface ProcessBookService {
 
   int editionIdByCode(String code) throws ServiceException;

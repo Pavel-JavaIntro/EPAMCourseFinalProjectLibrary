@@ -4,7 +4,6 @@ import by.pavka.library.controller.command.ActionCommand;
 import by.pavka.library.controller.command.PageRouter;
 import by.pavka.library.entity.impl.Edition;
 import by.pavka.library.entity.order.EditionInfo;
-import by.pavka.library.model.service.LibraryService;
 import by.pavka.library.model.service.ReaderService;
 import by.pavka.library.model.service.ServiceException;
 import by.pavka.library.model.service.impl.LibServiceFactory;
