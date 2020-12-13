@@ -19,14 +19,12 @@
         ${wrongAction} <br/>
         <input type="submit" value="<fmt:message key="message.entrance"/>"/>
     </form>
-    </p>
     <p> <fmt:message key="message.unregistered"/> <br/>
     <form name="searchForm" method="POST" action="library">
         <input type="hidden" name="command" value="search"/>
         <img src="./images/book.png" width="30" height="30" alt="">
         <input type="submit" value="<fmt:message key="message.search"/>">
     </form>
-    </p>
 </td>
 <script src="${pageContext.request.contextPath}/js/validator.js" type="text/javascript"></script>
 

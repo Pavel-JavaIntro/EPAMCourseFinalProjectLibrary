@@ -26,12 +26,12 @@ public class DBConnectorPool {
   private static final DBConnectorPool INSTANCE = new DBConnectorPool();
   private static final int TIMEOUT = 10;
 
-  private BlockingQueue<DBConnector> connections;
-  private BlockingQueue<DBConnector> usedConnections;
+  private final BlockingQueue<DBConnector> connections;
+  private final BlockingQueue<DBConnector> usedConnections;
   private int maxSize;
-  private String url;
-  private String login;
-  private String password;
+  private final String url;
+  private final String login;
+  private final String password;
 
   private DBConnectorPool() {
     ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
@@ -119,12 +119,11 @@ public class DBConnectorPool {
     return connector;
   }
 
-  public boolean releaseConnector(DBConnector connector) {
+  public void releaseConnector(DBConnector connector) {
     if (connector != null) {
       connections.offer(connector);
-      return usedConnections.remove(connector);
+      usedConnections.remove(connector);
     }
-    return false;
   }
 
   public void disconnect() {

@@ -21,8 +21,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class OrderHolder {
   private static final Logger LOGGER = LogManager.getLogger(OrderHolder.class);
   private static final OrderHolder instance = new OrderHolder();
-  private Queue<BookOrder> placedOrders;
-  private Queue<BookOrder> preparedOrders;
+  private final Queue<BookOrder> placedOrders;
+  private final Queue<BookOrder> preparedOrders;
 
   private OrderHolder() {
     InitService service = LibServiceFactory.getInitService();

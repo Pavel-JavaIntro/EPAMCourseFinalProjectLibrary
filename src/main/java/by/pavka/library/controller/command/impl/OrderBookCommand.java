@@ -42,7 +42,6 @@ public class OrderBookCommand implements ActionCommand {
           break;
         }
       }
-      return pageRouter;
     } else {
       BookOrder bookOrder = new BookOrder(client);
       ReaderService service = LibServiceFactory.getReaderService();
@@ -54,7 +53,7 @@ public class OrderBookCommand implements ActionCommand {
         pageRouter.setPage(PageRouter.ERROR);
         LOGGER.error("OrderBookCommand hasn't completed");
       }
-      return pageRouter;
     }
+    return pageRouter;
   }
 }

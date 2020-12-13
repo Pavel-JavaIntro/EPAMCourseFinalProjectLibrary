@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
  * @version 1.0
  */
 public class MessageManager {
-  private static ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
+  private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("messages");
   private static final String LOCALIZATION = "ru";
 
   private MessageManager() {

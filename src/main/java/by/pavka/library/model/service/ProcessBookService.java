@@ -32,7 +32,7 @@ public interface ProcessBookService {
 
   void prepareOrder(BookOrder bookOrder) throws ServiceException;
 
-  public void denyOrder(BookOrder bookOrder) throws ServiceException;
+  void denyOrder(BookOrder bookOrder) throws ServiceException;
 
   void fulfillOrder(BookOrder dispatchedOrder) throws ServiceException;
 
@@ -42,5 +42,5 @@ public interface ProcessBookService {
 
   List<Book> findDeskBooksOnHands() throws ServiceException;
 
-  public List<Book> findBooksByEditionCode(String code) throws ServiceException;
+  List<Book> findBooksByEditionCode(String code) throws ServiceException;
 }

@@ -13,10 +13,10 @@ import java.io.IOException;
  */
 public class CharacterSetFilter implements Filter {
   private String code;
-  private String ENCODING = "encoding";
+  private final String ENCODING = "encoding";
 
   @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
+  public void init(FilterConfig filterConfig) {
     code = filterConfig.getInitParameter(ENCODING);
   }
 
@@ -27,7 +27,6 @@ public class CharacterSetFilter implements Filter {
     String requestCode = servletRequest.getCharacterEncoding();
     if (code != null && !code.equalsIgnoreCase(requestCode)) {
       servletRequest.setCharacterEncoding(code);
-      // servletResponse.setContentType("text/html; charset=UTF-8");
       servletResponse.setCharacterEncoding(code);
       System.out.println("CODE = " + code);
     }

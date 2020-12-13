@@ -22,7 +22,7 @@ public class DirectAccessFilter implements Filter {
   private String errorPage;
 
   @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
+  public void init(FilterConfig filterConfig) {
     errorPage = filterConfig.getInitParameter("error");
     System.out.println(errorPage);
   }

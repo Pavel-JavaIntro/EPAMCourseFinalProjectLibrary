@@ -26,7 +26,7 @@ public class OrderTagHandler extends SimpleTagSupport {
   private boolean standard;
 
   @Override
-  public void doTag() throws JspException, IOException {
+  public void doTag() throws IOException {
     int userId = order.getUserId();
     int bookId = edition.getBook().getId();
     String editionInfo = edition.toString();

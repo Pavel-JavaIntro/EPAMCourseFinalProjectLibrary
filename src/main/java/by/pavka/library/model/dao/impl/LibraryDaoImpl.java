@@ -101,33 +101,12 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
       } else {
         return null;
       }
-    } catch (DaoException | SQLException | LibraryEntityException e) {
+    } catch (DaoException | SQLException e) {
       throw new DaoException("SimpleLibraryDao remove excdeption", e);
     } finally {
       connector.closeStatement(statement);
     }
   }
-
-  //  @Override
-  //  public void update(int id, EntityField<?> field) throws DaoException {
-  //    PreparedStatement statement = null;
-  //    String assignment =
-  //        ConverterFactory.getInstance().getConverter().formColumnName(field)
-  //            + "="
-  //            + field.getValue();
-  //    String sql = String.format(UPDATE, getTableName(), assignment);
-  //    System.out.println("SQL :" + sql);
-  //    try {
-  //      statement = connector.obtainPreparedStatement(sql);
-  //      statement.setInt(1, id);
-  //      System.out.println("INSIDE DAO: " + statement);
-  //      statement.executeUpdate();
-  //    } catch (DaoException | SQLException e) {
-  //      throw new DaoException("SimpleLibraryDao update exception", e);
-  //    } finally {
-  //      connector.closeStatement(statement);
-  //    }
-  //  }
 
   @Override
   public void update(int id, EntityField<?> field) throws DaoException {
@@ -172,10 +151,7 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     try {
       statement = connector.obtainPreparedStatement(sql);
       resultSet = statement.executeQuery();
-      if (resultSet.next()) {
-        return true;
-      }
-      return false;
+      return resultSet.next();
     } catch (DaoException | SQLException e) {
       throw new DaoException("SimpleLibraryDao contains exception", e);
     } finally {
@@ -228,7 +204,7 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
         T item = formEntity(resultSet);
         items.add(item);
       }
-    } catch (DaoException | SQLException | LibraryEntityException e) {
+    } catch (DaoException | SQLException e) {
       throw new DaoException("SimpleLibraryDao list exception", e);
     } finally {
       connector.closeStatement(statement);
@@ -236,7 +212,7 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     return items;
   }
 
-  private T formEntity(ResultSet resultSet) throws SQLException, LibraryEntityException {
+  private T formEntity(ResultSet resultSet) throws SQLException {
     T item = extractEntity();
     int id = resultSet.getInt(ID);
     item.setId(id);
@@ -264,7 +240,6 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     }
     template.replace(template.length() - 1, template.length(), ")");
     values.replace(values.length() - 1, values.length(), ")");
-    String result = template.toString() + values.toString();
-    return result;
+    return template.toString() + values.toString();
   }
 }

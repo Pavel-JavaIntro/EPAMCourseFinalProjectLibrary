@@ -8,7 +8,7 @@ package by.pavka.library.model.util.converter;
  */
 public class ConverterFactory {
   private static final ConverterFactory INSTANCE = new ConverterFactory();
-  private FieldColumnConverter converter = new DefaultFieldColumnConverter();
+  private final FieldColumnConverter converter = new DefaultFieldColumnConverter();
 
   private ConverterFactory() {
   }

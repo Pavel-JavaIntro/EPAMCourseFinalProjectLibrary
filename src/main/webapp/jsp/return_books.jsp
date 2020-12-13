@@ -36,15 +36,12 @@
 
                             <input type="submit" value="<fmt:message key="message.search"/>"/>
                         </form>
-                        </p>
                         <p>
-<%--                        ${sessionScope.returning}--%>
                         <plib:book-info book="${sessionScope.returning}" detailed="true"/>
                         <form name="fixReturnForm" method="POST" action="library">
                             <input type="hidden" name="command" value="fix_return"/>
                             <input type="submit" value="<fmt:message key="message.return"/>"/>
                         </form>
-                        </p>
                         <jsp:include page="${sessionScope.result}"/>
                     </td>
                     <jsp:include page="${sessionScope.client.entrance}"/>

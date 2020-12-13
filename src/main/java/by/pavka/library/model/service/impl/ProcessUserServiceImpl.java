@@ -34,8 +34,7 @@ public class ProcessUserServiceImpl implements ProcessUserService {
       nameField.setValue(name);
       Criteria criteria = new Criteria();
       criteria.addConstraints(surnameField, nameField);
-      List<User> users = userDao.read(criteria, true);
-      return users;
+      return userDao.read(criteria, true);
     } catch (DaoException e) {
       throw new ServiceException("Cannot find users", e);
     }

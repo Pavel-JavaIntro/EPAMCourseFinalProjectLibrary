@@ -25,7 +25,7 @@ public abstract class AppClient implements Serializable {
   private String name;
   private String email;
   private int reservedBooks;
-  private Set<EditionInfo> editionInfos = new HashSet<>();
+  private final Set<EditionInfo> editionInfos = new HashSet<>();
 
   public int getId() {
     return id;
@@ -71,15 +71,14 @@ public abstract class AppClient implements Serializable {
     return editionInfos;
   }
 
-  public boolean addEditionInfo(EditionInfo info) {
+  public void addEditionInfo(EditionInfo info) {
     if (info.getBook() == null) {
-      return false;
+      return;
     }
     boolean result = editionInfos.add(info);
     if (result) {
       reservedBooks++;
     }
-    return result;
   }
 
   public int getBasketSize() {

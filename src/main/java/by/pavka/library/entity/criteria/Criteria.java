@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 public class Criteria implements Serializable {
-  List<EntityField<?>> constraints = new ArrayList<>();
+  private final List<EntityField<?>> constraints = new ArrayList<>();
 
   public EntityField getConstraint(int index) {
     return constraints.get(index);
