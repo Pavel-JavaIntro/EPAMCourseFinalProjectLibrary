@@ -5,8 +5,6 @@ import by.pavka.library.entity.order.BookOrder;
 import by.pavka.library.entity.order.EditionInfo;
 import by.pavka.library.model.util.ConstantManager;
 import by.pavka.library.model.util.MessageManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
@@ -19,7 +17,6 @@ import java.util.Locale;
  * @version 1.0
  */
 public class OrderTagHandler extends SimpleTagSupport {
-  private static final Logger LOGGER = LogManager.getLogger(OrderTagHandler.class);
   private BookOrder order;
   private EditionInfo edition;
   private boolean standard;
