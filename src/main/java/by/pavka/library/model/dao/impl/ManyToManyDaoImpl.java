@@ -70,7 +70,6 @@ public class ManyToManyDaoImpl extends LibraryDaoImpl<Edition>
       statement = connector.obtainPreparedStatement(BIND);
       statement.setInt(1, editionId);
       statement.setInt(2, authorId);
-      System.out.println(statement);
       statement.executeUpdate();
     } catch (DaoException | SQLException e) {
       throw new DaoException("Many to many exception while binding", e);

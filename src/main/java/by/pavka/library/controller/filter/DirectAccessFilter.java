@@ -24,7 +24,6 @@ public class DirectAccessFilter implements Filter {
   @Override
   public void init(FilterConfig filterConfig) {
     errorPage = filterConfig.getInitParameter("error");
-    System.out.println(errorPage);
   }
 
   @Override

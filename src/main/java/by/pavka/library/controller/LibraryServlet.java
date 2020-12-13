@@ -28,8 +28,8 @@ public class LibraryServlet extends HttpServlet {
   /**
    * The main lifecycle method of this servlet
    *
-   * @param request
-   * @param response
+   * @param request HttpServletRequest
+   * @param response HttpServletResponse
    * @throws ServletException
    * @throws IOException
    */
@@ -43,8 +43,8 @@ public class LibraryServlet extends HttpServlet {
    * The method is used only to process the starting "welcome request". It prevents the application from sending
    * parameters using the address line of the browser
    *
-   * @param request
-   * @param response
+   * @param request HttpServletRequest
+   * @param response HttpServletResponse
    * @throws ServletException
    * @throws IOException
    */

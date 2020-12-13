@@ -65,8 +65,8 @@ public interface ActionCommand {
   /**
    * Wrapper method over execute(HttpServletRequest)
    *
-   * @param request
-   * @return
+   * @param request HttpServletRequest
+   * @return PageRouter
    */
   default PageRouter executeCommand(HttpServletRequest request) {
     HttpSession session = request.getSession();

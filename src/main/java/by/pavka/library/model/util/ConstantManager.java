@@ -23,7 +23,6 @@ public class ConstantManager {
   private static final Map<Integer, String> roles = new HashMap<>();
   public static final String ADMIN = "admin";
   public static final String LIBRARIAN = "librarian";
-  public static final String SUBSCRIBER = "subscriber";
   public static final String READER = "reader";
   public static final String GUEST = "guest";
   public static final String DECOMMISSIONED = "decommissioned";

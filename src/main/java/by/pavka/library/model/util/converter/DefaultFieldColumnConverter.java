@@ -18,14 +18,4 @@ public class DefaultFieldColumnConverter implements FieldColumnConverter {
 
     return fieldName.replaceAll(regex, replacement).toLowerCase();
   }
-
-  @Override
-  public String formFieldName(String column) {
-    while (column.contains("_")) {
-      String replacement =
-          String.valueOf(Character.toUpperCase(column.charAt(column.indexOf("_") + 1)));
-      column = column.replaceFirst("_[a-z]", replacement);
-    }
-    return column;
-  }
 }

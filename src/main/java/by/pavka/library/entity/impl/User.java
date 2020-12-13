@@ -32,19 +32,19 @@ public class User extends LibraryEntity {
   }
 
   public int getRoleId() throws LibraryEntityException {
-    EntityField<Integer> roleId = fieldForName("roleId");
+    EntityField<Integer> roleId = fieldForName(ROLE_ID);
     return roleId.getValue();
   }
   public String getSurname() throws LibraryEntityException {
-    EntityField<String> surname = fieldForName("surname");
+    EntityField<String> surname = fieldForName(SURNAME);
     return surname.getValue();
   }
   public String getName() throws LibraryEntityException {
-    EntityField<String> name = fieldForName("name");
+    EntityField<String> name = fieldForName(NAME);
     return name.getValue();
   }
   public String getEmail() throws LibraryEntityException {
-    EntityField<String> email = fieldForName("email");
+    EntityField<String> email = fieldForName(EMAIL);
     return email.getValue();
   }
 }

@@ -35,8 +35,6 @@ public class OverdueBooksCommand implements ActionCommand {
     List<Book> overdueBooks = new ArrayList<>();
     try {
       onHandsBooks = service.findDeskBooksOnHands();
-      System.out.println(onHandsBooks);
-      System.out.println(onHandsBooks.size());
       for (Book book : onHandsBooks) {
         Date dueSqlDate = (Date) book.fieldForName(Book.DUE_DATE).getValue();
         if (dueSqlDate != null) {

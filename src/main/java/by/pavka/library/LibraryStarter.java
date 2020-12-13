@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class LibraryStarter implements ServletContextListener {
   private static final Logger LOGGER = LogManager.getLogger(LibraryStarter.class.getName());
 
+  @Override
   public void contextInitialized(ServletContextEvent servletContextEvent) {
     LOGGER.info("STARTED");
     DBConnectorPool.getInstance();
@@ -35,6 +36,7 @@ public class LibraryStarter implements ServletContextListener {
     context.setAttribute(ActionCommand.APP_ATTRIBUTE_EMAIL, email);
   }
 
+  @Override
   public void contextDestroyed(ServletContextEvent servletContextEvent) {
     LOGGER.info("FINISHED");
     DBConnectorPool.getInstance().disconnect();

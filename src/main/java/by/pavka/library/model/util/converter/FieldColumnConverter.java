@@ -10,5 +10,4 @@ import by.pavka.library.entity.criteria.EntityField;
  */
 public interface FieldColumnConverter {
   String formColumnName(EntityField<?> field);
-  String formFieldName(String column);
 }

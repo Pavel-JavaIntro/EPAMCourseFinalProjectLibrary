@@ -135,7 +135,6 @@ public class ReaderServiceImpl implements ReaderService {
       UtilService utilService = LibServiceFactory.getUtilService();
       List<Book> result = utilService.findBooksByEdition(id);
       for (Book b : result) {
-        System.out.println(b.fieldForName(Book.RESERVED).getValue());
         if (!b.fieldForName(Book.LOCATION_ID)
             .getValue()
             .equals(ConstantManager.LOCATION_DECOMMISSIONED)
@@ -165,7 +164,6 @@ public class ReaderServiceImpl implements ReaderService {
         userField.setValue(userId);
         EntityField<Integer> reserveField = new EntityField<>(Book.RESERVED);
         reserveField.setValue(ConstantManager.RESERVED);
-        System.out.println("EDITION LOCATION " + editionInfo.getLocationId());
         EntityField<Integer> locationField = new EntityField<>(Book.LOCATION_ID);
         locationField.setValue(editionInfo.getLocationId());
         book.fieldForName(Book.LOCATION_ID).setValue(editionInfo.getLocationId());
@@ -176,7 +174,6 @@ public class ReaderServiceImpl implements ReaderService {
             bookDao.update(bookId, userField);
             bookDao.update(bookId, reserveField);
             bookDao.update(bookId, locationField);
-            System.out.println("DIRECTLY: " + bookDao.get(bookId).fieldForName(Book.LOCATION_ID).getValue());
           } else {
             int editionId = editionInfo.getEdition().getId();
             Book nBook = findFreeBookByEdition(editionId);

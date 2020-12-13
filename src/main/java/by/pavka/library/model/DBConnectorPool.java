@@ -51,7 +51,7 @@ public class DBConnectorPool {
     try {
       connectionsNumber = Integer.parseInt(num);
     } catch (NumberFormatException e) {
-      LOGGER.error("Integer parcing failed");
+      LOGGER.error("Integer parsing failed");
       connectionsNumber = 5;
     }
     try {
@@ -85,8 +85,7 @@ public class DBConnectorPool {
     if (connections.size() >= maxSize) {
       return false;
     }
-    try {
-      Connection connection = DriverManager.getConnection(url, login, password);
+    try (Connection connection = DriverManager.getConnection(url, login, password)){
       DBConnector connector = new DBConnector(connection);
       connections.add(connector);
     } catch (SQLException | DaoException e) {

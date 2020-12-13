@@ -39,12 +39,4 @@ public class BookOrder {
     editionInfoSet.remove(editionInfo);
     return new BookOrder(userId, editionInfo);
   }
-
-  public void addBook(EditionInfo editionInfo) {
-    editionInfoSet.add(editionInfo);
-  }
-
-  public boolean isFulfilled() {
-    return editionInfoSet.isEmpty();
-  }
 }

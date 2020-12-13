@@ -28,7 +28,6 @@ public class CharacterSetFilter implements Filter {
     if (code != null && !code.equalsIgnoreCase(requestCode)) {
       servletRequest.setCharacterEncoding(code);
       servletResponse.setCharacterEncoding(code);
-      System.out.println("CODE = " + code);
     }
     filterChain.doFilter(servletRequest, servletResponse);
   }

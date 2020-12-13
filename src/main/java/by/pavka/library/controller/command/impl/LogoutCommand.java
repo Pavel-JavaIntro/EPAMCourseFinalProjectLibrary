@@ -22,7 +22,7 @@ public class LogoutCommand implements ActionCommand {
 
   /**
    * Overrides the basing default method
-   * @param request
+   * @param request HttpServletRequest
    * @return PageRouter
    */
   @Override

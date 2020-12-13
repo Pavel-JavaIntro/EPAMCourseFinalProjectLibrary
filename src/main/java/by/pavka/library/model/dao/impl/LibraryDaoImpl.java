@@ -57,11 +57,8 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     String sql = String.format(INSERT, getTableName());
     try {
       sql += formInsertRequest(entity);
-      System.out.println(sql);
       statement = connector.obtainPreparedStatement(sql);
-      System.out.println("Before execution: " + statement);
       int affectedRows = statement.executeUpdate();
-      System.out.println("After execution: " + affectedRows + " " + statement);
       ResultSet resultSet = statement.getGeneratedKeys();
       if (resultSet.next()) {
         return resultSet.getInt(1);
@@ -82,7 +79,6 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
 
   @Override
   public List<T> read(Criteria criteria, boolean strict) throws DaoException {
-    System.out.println(LIST_ALL + getTableName() + interpret(criteria, strict));
     return list(LIST_ALL + getTableName() + interpret(criteria, strict));
   }
 
@@ -112,12 +108,10 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     PreparedStatement statement = null;
     String assignment = ConverterFactory.getInstance().getConverter().formColumnName(field) + "=?";
     String sql = String.format(UPDATE, getTableName(), assignment);
-    System.out.println("SQL :" + sql);
     try {
       statement = connector.obtainPreparedStatement(sql);
       statement.setObject(1, field.getValue());
       statement.setInt(2, id);
-      System.out.println("INSIDE DAO: " + statement);
       statement.executeUpdate();
     } catch (DaoException | SQLException e) {
       throw new DaoException("SimpleLibraryDao update exception", e);
@@ -146,7 +140,6 @@ public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, E
     PreparedStatement statement = null;
     ResultSet resultSet;
     String sql = LIST_ALL + getTableName() + interpret(criteria, strict);
-    System.out.println("SQL = " + sql);
     try {
       statement = connector.obtainPreparedStatement(sql);
       resultSet = statement.executeQuery();

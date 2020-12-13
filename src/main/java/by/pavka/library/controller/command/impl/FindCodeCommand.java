@@ -37,7 +37,6 @@ public class FindCodeCommand implements ActionCommand {
           session.setAttribute(ADDITION, PageRouter.EDITION_ADDITION);
         } else {
           List<Book> books = service.findBooksByEditionCode(code);
-          System.out.println("LIST LENGTH IS " + books.size());
           session.setAttribute(ADDITION, PageRouter.BOOK_ADDITION);
           session.setAttribute(DECOMMISSION, books);
         }

@@ -153,15 +153,8 @@ public class ProcessBookServiceImpl implements ProcessBookService {
       for (EditionInfo editionInfo : bookOrder.getEditionInfoSet()) {
         Book book = editionInfo.getBook();
         int bookId = book.getId();
-//        EntityField<Integer> locField = new EntityField<>(Book.LOCATION_ID);
-//        locField.setValue(ConstantManager.LOCATION_READING_HALL_RESERVE);
         EntityField<Integer> reserveField = new EntityField<>(Book.RESERVED);
         reserveField.setValue(ConstantManager.PREPARED);
-        try {
-          System.out.println("WHILE PREPARING: " + editionInfo.getLocationId() + " " + book.fieldForName(Book.LOCATION_ID).getValue());
-        } catch (LibraryEntityException e) {
-          e.printStackTrace();
-        }
         try {
           connector.suspendAutoCommit();
           bookDao.update(bookId, reserveField);
@@ -221,7 +214,6 @@ public class ProcessBookServiceImpl implements ProcessBookService {
         EntityField<Integer> reserveField = new EntityField<>(Book.RESERVED);
         reserveField.setValue(ConstantManager.ISSUED);
         int locationId = (int)book.fieldForName(Book.LOCATION_ID).getValue();
-        System.out.println("LOCATION ID = " + locationId);
         EntityField<LocalDate> dateField = new EntityField<>(Book.DUE_DATE);
         LocalDate dueDate = LocalDate.now().plusDays(ConstantManager.DESK_DISPATCH_TERM);
         dateField.setValue(dueDate);
@@ -234,7 +226,6 @@ public class ProcessBookServiceImpl implements ProcessBookService {
           }
           connector.commit();
         } catch (SQLException throwables) {
-          System.out.println("ROLLING BACK");
           connector.rollback();
         } finally {
           connector.restoreAutoCommit();
@@ -249,7 +240,6 @@ public class ProcessBookServiceImpl implements ProcessBookService {
         editionDao.update(editionId, deliveryField);
       }
     } catch (DaoException | SQLException | LibraryEntityException e) {
-      System.out.println(e.getMessage());
       throw new ServiceException("Cannot prepare book", e);
     }
   }

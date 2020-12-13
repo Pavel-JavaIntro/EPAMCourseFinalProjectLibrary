@@ -22,7 +22,7 @@ import java.util.Locale;
  * @version 1.0
  */
 public class BookTagHandler extends SimpleTagSupport {
-  private static final Logger LOGGER = LogManager.getLogger(UserTagHandler.class);
+  private static final Logger LOGGER = LogManager.getLogger(BookTagHandler.class);
   private Book book;
   private boolean detailed;
 
