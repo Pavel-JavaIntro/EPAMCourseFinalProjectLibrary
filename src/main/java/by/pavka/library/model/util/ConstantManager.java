@@ -4,7 +4,6 @@ import by.pavka.library.model.LibraryFatalException;
 import by.pavka.library.model.service.InitService;
 import by.pavka.library.model.service.impl.LibServiceFactory;
 import by.pavka.library.model.service.ServiceException;
-import by.pavka.library.model.service.impl.ReaderServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +20,6 @@ public class ConstantManager {
 
   private static final Logger LOGGER = LogManager.getLogger(ConstantManager.class.getName());
   private static final Map<Integer, String> locations = new HashMap<>();
-  private static final Map<Integer, String> operations = new HashMap<>();
   private static final Map<Integer, String> roles = new HashMap<>();
   public static final String ADMIN = "admin";
   public static final String LIBRARIAN = "librarian";
@@ -71,10 +69,6 @@ public class ConstantManager {
       }
     }
     return 0;
-  }
-
-  public static String getOperationById(int i) {
-    return operations.get(i);
   }
 
   public static String getRoleById(int i) {

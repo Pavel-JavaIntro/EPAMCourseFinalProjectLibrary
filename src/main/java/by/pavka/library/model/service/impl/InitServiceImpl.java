@@ -4,7 +4,6 @@ import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.SimpleListEntity;
 import by.pavka.library.entity.criteria.Criteria;
 import by.pavka.library.entity.criteria.EntityField;
-import by.pavka.library.entity.impl.Author;
 import by.pavka.library.entity.impl.Book;
 import by.pavka.library.entity.impl.Edition;
 import by.pavka.library.entity.impl.User;

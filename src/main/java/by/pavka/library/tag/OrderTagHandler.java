@@ -8,7 +8,6 @@ import by.pavka.library.model.util.MessageManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.util.Locale;
@@ -35,7 +34,7 @@ public class OrderTagHandler extends SimpleTagSupport {
     String language = (String) getJspContext().findAttribute(ActionCommand.SESSION_ATTRIBUTE_LANGUAGE);
     Locale locale = language == null ? Locale.getDefault() : new Locale(language);
     String process = MessageManager.getProperty("message.process", locale);
-    String result = null;
+    String result;
     if (!standard) {
       result = String.format(process, userId, bookId, editionInfo, location);
     } else {
@@ -43,7 +42,7 @@ public class OrderTagHandler extends SimpleTagSupport {
       String transfer = MessageManager.getProperty("message.transfer", locale);
       result += String.format(transfer, location);
     }
-    getJspContext().getOut().print(String.format(result));
+    getJspContext().getOut().print(result);
   }
 
   public void setOrder(BookOrder order) {

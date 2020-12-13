@@ -16,7 +16,7 @@ import by.pavka.library.model.util.TableEntityMapper;
 public class LibraryDaoFactory {
 
   public static <T extends LibraryEntity> LibraryDao<T> getLibraryDao(TableEntityMapper mapper, DBConnector connector) throws DaoException {
-    return new LibraryDaoImpl<T>(mapper, connector);
+    return new LibraryDaoImpl<>(mapper, connector);
   }
 
   public static ManyToManyDao<Edition, Author> getManyToManyDao(DBConnector connector) throws DaoException {

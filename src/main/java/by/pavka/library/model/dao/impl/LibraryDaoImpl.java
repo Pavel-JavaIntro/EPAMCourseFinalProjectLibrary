@@ -2,7 +2,6 @@ package by.pavka.library.model.dao.impl;
 
 import by.pavka.library.entity.EntityExtractor;
 import by.pavka.library.entity.LibraryEntity;
-import by.pavka.library.entity.LibraryEntityException;
 import by.pavka.library.entity.criteria.Criteria;
 import by.pavka.library.entity.criteria.EntityField;
 import by.pavka.library.model.dao.DBConnector;
@@ -25,7 +24,7 @@ import java.util.List;
  *
  * @param <T>
  * @version 1.0
- * @Author Pavel Kassitchev
+ * @author Pavel Kassitchev
  */
 public class LibraryDaoImpl<T extends LibraryEntity> implements LibraryDao<T>, EntityExtractor<T> {
   private static final String INSERT = "INSERT INTO %s ";
