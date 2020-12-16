@@ -12,12 +12,12 @@ public class TestListener extends TestListenerAdapter {
 
   @Override
   public void onTestSuccess(ITestResult tr) {
-    LOGGER.info(tr.getClass().getName());
+    LOGGER.info(tr.getTestClass().getName() + " Success!");
   }
 
   @Override
   public void onTestFailure(ITestResult tr) {
-    LOGGER.error(tr.getStatus());
+    LOGGER.error(tr.getStatus() + " " + tr.getMethod() + " Failed!");
   }
 
   @Override
