@@ -20,7 +20,7 @@ public class DefaultFieldColumnConverterTest {
   }
 
   @Test
-  public void converterTest() {
+  public void converterTest1() {
     String fieldName = "justLowerCamelCase";
     EntityField<Integer> field = new EntityField<>(fieldName);
     String actual = converter.formColumnName(field);
@@ -28,8 +28,17 @@ public class DefaultFieldColumnConverterTest {
     Assert.assertEquals(actual, expected);
   }
 
+  @Test
+  public void converterTest2() {
+    String fieldName = "JustUpperCamelCase";
+    EntityField<Integer> field = new EntityField<>(fieldName);
+    String actual = converter.formColumnName(field);
+    String expected = "just_upper_camel_case";
+    Assert.assertEquals(actual, expected);
+  }
+
   @AfterTest
-  public void clean() {
+  public void tearDown() {
     converter = null;
   }
 }
