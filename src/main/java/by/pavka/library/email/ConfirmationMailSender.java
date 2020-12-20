@@ -10,7 +10,7 @@ import java.util.Properties;
 /**
  * ConfirmationMailSender
  * <p>
- * The only static method of this class id responsible for generation a random password and sendin an email with it to
+ * The only static method of this class id responsible for generating a random password and sending an email with it to
  * a user's email box.
  *
  * @author Pavel Kassitchev

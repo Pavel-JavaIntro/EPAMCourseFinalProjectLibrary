@@ -22,7 +22,8 @@ import java.util.List;
  */
 public class AuthServiceImpl implements AuthService {
 
-  AuthServiceImpl() {}
+  AuthServiceImpl() {
+  }
 
   @Override
   public User auth(String surname, String name, String password) throws ServiceException {
